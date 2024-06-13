@@ -1,5 +1,4 @@
-﻿
-use master;
+﻿use master;
 go
 drop database if exists edunovawp5;
 go
@@ -132,6 +131,18 @@ select * from polaznici where sifra in (2,7,12,25);
 select * from polaznici where sifra between 2 and 8;
 
 select * from smjerovi where izvodiseod is not null;
+
+﻿select * from smjerovi where sifra=2;
+update smjerovi set izvodiseod='2024-06-06 19:10' where sifra=2;
+
+select * from smjerovi;
+update smjerovi set cijena = cijena * 0.9;
+select * from smjerovi;
+
+update smjerovi set cijena = cijena * 1.065;
+
+update smjerovi set cijena = cijena - 10;
+
 
 
 
