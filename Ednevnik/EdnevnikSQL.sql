@@ -2,7 +2,7 @@
 go
 drop database if exists ednevnik;
 go
-create database ednevnik;
+create database ednevnik collate Croatian_CI_AS;
 go
 use ednevnik;
 
