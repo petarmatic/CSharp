@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI1.Controllers
+namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -28,9 +28,6 @@ namespace WebAPI1.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
-            
         }
-
-        
     }
 }
