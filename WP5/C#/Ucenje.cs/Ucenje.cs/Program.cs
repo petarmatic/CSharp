@@ -6,4 +6,8 @@ using Ucenje.cs;
 
 
 
-E01UlazIzlaz.Izvedi();
+//E01UlazIzlaz.Izvedi();
+//E02VarijableTipoviPodataka.Izvedi();
+E03UvjetnoGrananjeIF.Izvedi();
+
+
