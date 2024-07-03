@@ -8,6 +8,12 @@ using Ucenje.cs;
 
 //E01UlazIzlaz.Izvedi();
 //E02VarijableTipoviPodataka.Izvedi();
-E03UvjetnoGrananjeIF.Izvedi();
+//E03UvjetnoGrananjeIF.Izvedi();
+//E03Z1.Izvedi();
+//E03Z2.Izvedi();
+//E03Z2InLineIf.Izvedi();
+E03Z3.Izvedi();
+
+
 
 
