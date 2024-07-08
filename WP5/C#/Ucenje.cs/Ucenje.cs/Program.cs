@@ -18,7 +18,10 @@ using Ucenje.cs;
 //E05Nizovi.Izvedi();
 //E06ForPetlja.Izvedi();
 //E07WhilePetlja.Izvedi();
-E08DoWhilePetlja.Izvedi();
+//E08DoWhilePetlja.Izvedi();
+//E09ForeachPetlja.Izvedi();
+//E10TryCatch.Izvedi();
+E01Z1.Izvedi();
 
 
 
