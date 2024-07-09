@@ -21,9 +21,11 @@ using Ucenje.cs;
 //E08DoWhilePetlja.Izvedi();
 //E09ForeachPetlja.Izvedi();
 //E10TryCatch.Izvedi();
-E01Z1.Izvedi();
-
-
+//E01Z1.Izvedi();
+//E01Z2.Izvedi();
+//E01Z3.Izvedi();
+//E01Z4.Izvedi();
+E03Z3a.Izvedi();
 
 
 
