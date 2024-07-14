@@ -27,5 +27,6 @@ using Ucenje.cs;
 //E01Z4.Izvedi();
 //E03Z3a.Izvedi();
 E05Z1.Izvedi();
+E11Metode.Izvedi();
 
 
