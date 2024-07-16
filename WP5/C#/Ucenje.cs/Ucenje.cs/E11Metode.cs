@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,9 +29,18 @@ namespace Ucenje.cs
                 Console.WriteLine(SlucajnaRijec());
             }
 
+            string s = "Hello";
+            s.ToUpper();
 
             Console.WriteLine(SumaBrojeva(3,23));
             Console.WriteLine(SumaBrojeva(1,100));
+            int[] brojevi = { 2, 4, 5, 8, 7 };
+            Console.WriteLine(SumaBrojeva(brojevi));
+
+            int redova = UcitajCijeliBroj("Unesi broj redova", 2, 100);
+            int stupaca=UcitajCijeliBroj("Unesi broj stupaca",2,100);
+            // ja sam siguran ovdje da redova i stupaca imaju vrijednosti 2 i 100
+
 
         }
 
@@ -105,9 +115,13 @@ namespace Ucenje.cs
         //trenutno nama najzanimljiviji tip
         // metoda je određenog tipa (vraća vrijednost) i prima parametre
 
-        private static int SumaBrojeva(int min, int max)
+        private static int SumaBrojeva(int b1, int b2)
         {
             int suma = 0;
+
+            int min = b1 < b2 ? b2 : b1;
+            int max=b2 > b1 ? b1 : b2;
+
 
             for (int i = min; i<=max;i++)
             {
@@ -116,6 +130,52 @@ namespace Ucenje.cs
 
 
             return suma;
+        }
+
+        private static int SumaBrojeva(int[]niz)
+        {
+            /*
+            niz.Sum(x =>
+            {
+                int broj=2;
+
+                return broj;
+
+            });
+            */
+            var suma = 0;
+            foreach (var b in niz)
+            {
+                suma+= b;
+            }
+
+            return suma;
+
+
+        }
+
+
+        public static int UcitajCijeliBroj(string poruka="Unesi broj", int min=0, int max=1000)
+        {
+            int broj = 0;
+            while (true)
+            {
+                Console.Write(poruka + ": ");
+                try
+                {
+                    broj = int.Parse(Console.ReadLine());
+                    if(broj<min || broj>max)
+                    {
+                        Console.WriteLine("Broj mora biti u rasponu {0} i {1}", min,max);
+                    }
+                    return broj;
+                }
+                catch
+                {
+                    Console.WriteLine("Nisi unio broj");
+                }
+            }
+
         }
 
     }
