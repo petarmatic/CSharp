@@ -28,5 +28,8 @@ using Ucenje.cs;
 //E03Z3a.Izvedi();
 //E05Z1.Izvedi();
 //E11Metode.Izvedi();
-E11Z1.Izvedi();
+//E11Z1.Izvedi();
+//E12Rekurzija.Izvedi();
+E13Vjezbanje.Izvedi();
+
 
