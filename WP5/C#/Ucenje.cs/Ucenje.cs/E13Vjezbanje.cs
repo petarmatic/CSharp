@@ -15,7 +15,22 @@ namespace Ucenje.cs
             //Zadatak2();
             //Zadatak3();
             //Zadatak4();
-            Zadatak5();
+            //Zadatak5();
+            Zadatak6();
+        }
+
+        private static void Zadatak6()
+        {
+            // Koliko elemenata niza ima zapis s 7 sekundi?
+
+            foreach (var d in PodaciDateTime.Niz())
+            {
+                if (d.Second == 7)
+                {
+                    Console.WriteLine(d.ToString("yyyy-MM-dd HH:mm:ss"));
+                }
+            }
+
         }
 
         private static void Zadatak5()
