@@ -30,6 +30,7 @@ using Ucenje.cs;
 //E11Metode.Izvedi();
 //E11Z1.Izvedi();
 //E12Rekurzija.Izvedi();
-E13Vjezbanje.Izvedi();
+//E13Vjezbanje.Izvedi();
+CiklicnaMatrica.Izvedi();
 
 
