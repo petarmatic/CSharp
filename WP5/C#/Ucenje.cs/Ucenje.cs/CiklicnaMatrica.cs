@@ -29,17 +29,22 @@ namespace Ucenje.cs
         {
             int[,] matrica = new int[redovi, stupci];
 
-
-            for (int i = 0; i < redovi; i++)
-            {
-                matrica[i,0] = i + 1;
-
-            }
-
             for (int j = 0; j < stupci; j++)
             {
-
+                matrica[0, j] = j + 1;
             }
+
+            // Popunjavanje ostalih redova
+            for (int i = 1; i < redovi; i++)
+            {
+                for (int j = 0; j < stupci; j++)
+                {
+                    matrica[i, j] = matrica[i - 1, (j + stupci - 1) % stupci];
+                }
+            }
+
+        
+            
 
 
             return matrica;
