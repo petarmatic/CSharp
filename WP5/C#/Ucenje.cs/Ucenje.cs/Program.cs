@@ -32,6 +32,7 @@ using Ucenje.cs;
 //E12Rekurzija.Izvedi();
 //E13Vjezbanje.Izvedi();
 //CiklicnaMatrica.Izvedi();
-E03Z4.Izvedi();
+//E03Z4.Izvedi();
+E06Z1.Izvedi();
 
 
