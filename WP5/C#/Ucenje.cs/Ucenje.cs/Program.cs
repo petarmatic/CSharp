@@ -33,6 +33,6 @@ using Ucenje.cs;
 //E13Vjezbanje.Izvedi();
 //CiklicnaMatrica.Izvedi();
 //E03Z4.Izvedi();
-E06Z1.Izvedi();
-
+//E06Z1.Izvedi();
+E07Z2.Izvedi();
 

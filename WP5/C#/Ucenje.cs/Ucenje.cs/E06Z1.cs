@@ -22,8 +22,7 @@ namespace Ucenje.cs
             int brojOd = prvi < drugi ? prvi : drugi;
             int brojDo = prvi > drugi ? prvi : drugi;
 
-            for (int i = brojOd; i <= brojDo; i++) // Ovo je ispravan uslov
-            {
+            for (int i = brojOd; i <= brojDo; i++) 
                 Console.WriteLine(i);
             }
 
@@ -31,4 +30,4 @@ namespace Ucenje.cs
 
         }
     }
-}
+
