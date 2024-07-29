@@ -1,74 +1,65 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ucenje.cs
 {
     internal class CiklicnaMatrica
     {
-
-
         public static void Izvedi()
         {
-            Console.Write("Unesi broj redova");
+            Console.Write("Unesi broj redova: ");
             int redovi = int.Parse(Console.ReadLine());
-            Console.Write("Unesi broj stupaca");
+            Console.Write("Unesi broj stupaca: ");
             int stupci = int.Parse(Console.ReadLine());
 
-            int[,] matrica = Ck(redovi, stupci);
-
-            Ispis(matrica);
-
-
+            int[,] matrica = Generiraj(redovi, stupci);
+            IspisiMatricu(matrica);
         }
 
-        public static int[,] Ck(int redovi, int stupci)
+        public static int[,] Generiraj(int redovi, int stupci)
         {
             int[,] matrica = new int[redovi, stupci];
+            int broj = 1;
+            int gornjaGranica = 0, donjaGranica = redovi - 1;
+            int lijevaGranica = 0, desnaGranica = stupci - 1;
 
-            for (int j = 0; j < stupci; j++)
+            while (broj <= redovi * stupci)
             {
-                matrica[0, j] = j + 1;
+                // Popunjavanje donjeg reda s desna na lijevo
+                for (int i = desnaGranica; i >= lijevaGranica && broj <= redovi * stupci; i--)
+                    matrica[donjaGranica, i] = broj++;
+                donjaGranica--;
+
+                // Popunjavanje lijeve kolone odozdo prema gore
+                for (int i = donjaGranica; i >= gornjaGranica && broj <= redovi * stupci; i--)
+                    matrica[i, lijevaGranica] = broj++;
+                lijevaGranica++;
+
+                // Popunjavanje gornjeg reda s lijeve na desno
+                for (int i = lijevaGranica; i <= desnaGranica && broj <= redovi * stupci; i++)
+                    matrica[gornjaGranica, i] = broj++;
+                gornjaGranica++;
+
+                // Popunjavanje desne kolone odozdo prema gore
+                for (int i = gornjaGranica; i <= donjaGranica && broj <= redovi * stupci; i++)
+                    matrica[i, desnaGranica] = broj++;
+                desnaGranica--;
             }
-
-            // Popunjavanje ostalih redova
-            for (int i = 1; i < redovi; i++)
-            {
-                for (int j = 0; j < stupci; j++)
-                {
-                    matrica[i, j] = matrica[i - 1, (j + stupci - 1) % stupci];
-                }
-            }
-
-        
-            
-
 
             return matrica;
         }
 
-        public static void Ispis(int[,] matrica)
+        public static void IspisiMatricu(int[,] matrica)
         {
             int redovi = matrica.GetLength(0);
             int stupci = matrica.GetLength(1);
-
             for (int i = 0; i < redovi; i++)
             {
                 for (int j = 0; j < stupci; j++)
                 {
-                    Console.Write(matrica[i, j] + "\t");
+                    Console.Write(matrica[i, j].ToString("D2") + " ");
                 }
                 Console.WriteLine();
             }
-
         }
-
-
     }
-
-
-
 }

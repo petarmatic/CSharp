@@ -31,8 +31,8 @@ using Ucenje.cs;
 //E11Z1.Izvedi();
 //E12Rekurzija.Izvedi();
 //E13Vjezbanje.Izvedi();
-//CiklicnaMatrica.Izvedi();
+CiklicnaMatrica.Izvedi();
 //E03Z4.Izvedi();
 //E06Z1.Izvedi();
-E07Z2.Izvedi();
+//E07Z2.Izvedi();
 
