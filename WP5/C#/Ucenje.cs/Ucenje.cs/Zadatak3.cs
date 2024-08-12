@@ -41,22 +41,24 @@ namespace Ucenje.cs
 
             int cilj = 20;
             int zbroj = 0;
+            int umnozak = 1;
 
             // int[] brojevi = new int[zbroj];
 
-            for (int i = 0; i < cilj; i++)
+            for (int i = cilj; i > 0; i--)
             {
-                {
+                
                     if (i % 2 != 0)
                     {
 
                         Console.WriteLine(i);
+                        zbroj += i;
+                        umnozak *= i;
                     }
 
-
-                }
-
             }
+            Console.WriteLine($"Zbroj: {zbroj}");
+            Console.WriteLine($"Umnožak: {umnozak}");
         }
 
             private static void Tip5()
