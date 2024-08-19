@@ -43,8 +43,41 @@ namespace Ucenje.cs
             int zbroj = 0;
             int umnozak = 1;
 
-            // int[] brojevi = new int[zbroj];
+            do
+            {
+                if (cilj % 2 != 0)
+                {
+                    Console.WriteLine(cilj);
+                    zbroj += cilj;
+                    umnozak *= cilj;
 
+                }
+                cilj--;
+
+
+
+            }while(cilj > 0);
+            Console.WriteLine($"Zbroj: {zbroj}");
+            Console.WriteLine($"Umnožak: {umnozak}");
+
+
+
+
+            /*
+            while (cilj > 0)
+            {
+                if (cilj % 2 != 0)
+                {
+                    Console.WriteLine(cilj);
+                    zbroj += cilj;
+                    umnozak *= cilj;
+                }
+                cilj--;
+            }
+            */
+
+
+            /*
             for (int i = cilj; i > 0; i--)
             {
                 
@@ -57,83 +90,84 @@ namespace Ucenje.cs
                     }
 
             }
-            Console.WriteLine($"Zbroj: {zbroj}");
-            Console.WriteLine($"Umnožak: {umnozak}");
+            */
+
         }
 
-            private static void Tip5()
+        private static void Tip5()
+        {
+            int[] niz = { 5, 4, 5, 3, 4, 3 };
+            for (int i = 0; i < niz.Length; i++)
             {
-                int[] niz = { 5, 4, 5, 3, 4, 3 };
-                for (int i = 0; i < niz.Length; i++)
-                {
-                    Console.WriteLine(niz[i]);
-                }
+                Console.WriteLine(niz[i]);
             }
-            private static void Tip4()
+        }
+        private static void Tip4()
+        {
+            int i = 0;
+            for (; ; )
             {
-                int i = 0;
-                for (; ; )
+                if (i++ > 10)
                 {
-                    if (i++ > 10)
+                    break;
+                }
+                Console.WriteLine("osijek");
+            }
+        }
+
+        private static void Tip3()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                if (i == 3)
+                {
+                    continue;
+                }
+                Console.WriteLine(i);
+            }
+        }
+
+        private static void Tip2()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (j == 2)
+                    {
+                        goto labela;
+
+
+                    }
+                    Console.WriteLine("i={0},j={1}", i, j);
+                }
+            labela:
+                Console.WriteLine("Izlazak iz unutrašnje petlje jer je j dostigao vrijednost 2");
+            }
+
+
+        }
+
+
+        private static void Tip1()
+        {
+
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (j == 2)
                     {
                         break;
+
+
                     }
-                    Console.WriteLine("osijek");
+                    Console.WriteLine("i={0},j={1}", i, j);
                 }
             }
-
-            private static void Tip3()
-            {
-                for (int i = 0; i < 10; i++)
-                {
-                    if (i == 3)
-                    {
-                        continue;
-                    }
-                    Console.WriteLine(i);
-                }
-            }
-
-            private static void Tip2()
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    for (int j = 0; j < 5; j++)
-                    {
-                        if (j == 2)
-                        {
-                            goto labela;
-
-
-                        }
-                        Console.WriteLine("i={0},j={1}", i, j);
-                    }
-                labela:
-                    Console.WriteLine("Izlazak iz unutrašnje petlje jer je j dostigao vrijednost 2");
-                }
-
-
-            }
-
-
-            private static void Tip1()
-            {
-
-                for (int i = 0; i < 5; i++)
-                {
-                    for (int j = 0; j < 5; j++)
-                    {
-                        if (j == 2)
-                        {
-                            break;
-
-
-                        }
-                        Console.WriteLine("i={0},j={1}", i, j);
-                    }
-                }
-                Console.WriteLine();
-            }
+            Console.WriteLine();
         }
 
+
     }
+}
