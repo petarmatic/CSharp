@@ -37,4 +37,7 @@ using Ucenje.cs;
 //E07Z2.Izvedi();
 //Zadatak1.Izvedi();
 //Zadatak2.Izvedi();
-Zadatak3.Izvedi();
+//Zadatak3.Izvedi();
+Ucenje.cs.E15KlasaObjekt.Program.Izvedi();
+
+
