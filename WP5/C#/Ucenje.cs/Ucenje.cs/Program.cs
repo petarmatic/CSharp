@@ -38,6 +38,6 @@ using Ucenje.cs;
 //Zadatak1.Izvedi();
 //Zadatak2.Izvedi();
 //Zadatak3.Izvedi();
-Ucenje.cs.E15KlasaObjekt.Program.Izvedi();
-
+//Ucenje.cs.E15KlasaObjekt.Program.Izvedi();
+new Ucenje.cs.E16NasljeđivanjePolimorfizam.Program();
 
