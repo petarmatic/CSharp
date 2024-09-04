@@ -56,6 +56,20 @@ namespace Ucenje.cs.E16NasljeđivanjePolimorfizam
             var predavac=new Predavac() { Sifra=1,Ime="Marko"};
             Console.WriteLine("{0}-{1}",polaznik, predavac);
 
+            //var e = new Entitet(); - apstraktna klasa se ne moze instancirati
+
+            var obradi = new Obrada[2];
+
+            obradi[0] = new ObradaIzlaznihRacuna();
+            obradi[1] = new ObradaUlaznihRacuna();
+
+            // polimorfizam
+            foreach (var o in obradi)
+            {
+                o.Procesuiraj();
+            }
+
+
         }
 
         // overloads konstruktora

@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ucenje.cs.E16NasljeđivanjePolimorfizam
 {
-    internal abstract class Osoba : Entitet
+    internal class ObradaUlaznihRacuna : Obrada
     {
-        public string? Ime { get; set; }
-        public string? Prezime { get; set; }
-
-
+        public override void Procesuiraj()
+        {
+            Console.WriteLine("Plati preko banke");
+        }
     }
 }
