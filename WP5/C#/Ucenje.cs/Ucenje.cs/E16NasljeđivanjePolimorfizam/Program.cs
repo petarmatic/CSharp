@@ -54,6 +54,9 @@ namespace Ucenje.cs.E16NasljeđivanjePolimorfizam
             polaznik.Ime = "Pero";
 
             var predavac=new Predavac() { Sifra=1,Ime="Marko"};
+
+            predavac = new Predavac(2, "Ana", "Mak", "HR2454");
+
             Console.WriteLine("{0}-{1}",polaznik, predavac);
 
             //var e = new Entitet(); - apstraktna klasa se ne moze instancirati

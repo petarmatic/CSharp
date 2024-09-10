@@ -39,5 +39,6 @@ using Ucenje.cs;
 //Zadatak2.Izvedi();
 //Zadatak3.Izvedi();
 //Ucenje.cs.E15KlasaObjekt.Program.Izvedi();
-new Ucenje.cs.E16NasljeđivanjePolimorfizam.Program();
+//new Ucenje.cs.E16NasljeđivanjePolimorfizam.Program();
+new Ucenje.cs.E17GenericiMalbdaEkstenzije.Program();
 
