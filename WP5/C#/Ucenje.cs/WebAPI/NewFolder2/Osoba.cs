@@ -2,7 +2,7 @@
 {
     public class Osoba
     {
-        public int Id { get; set; } 
+        public int Sifra{ get; set; } 
         public string? Ime { get; set; }
         public string? Prezime { get; set; }
     }
