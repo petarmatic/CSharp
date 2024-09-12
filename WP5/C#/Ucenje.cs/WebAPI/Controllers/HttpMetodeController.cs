@@ -73,6 +73,7 @@ namespace WebAPI.Controllers
 
         //počinje
 
+        /*
         [HttpPut]
         public IActionResult Put(Osoba osoba)
         {
@@ -82,9 +83,10 @@ namespace WebAPI.Controllers
                 return BadRequest(new { greska = true, pruka = "Nije dobar parametar" });
             }
             osoba.Prezime="g. " + osoba.Prezime;
-            return StatusCode(statusCode.status206)
+            return StatusCode(statusCode.status206);
 
         }
+        */
 
         //završava
 
