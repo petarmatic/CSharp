@@ -1,0 +1,6 @@
+@Ednevnik_HostAddress = http://localhost:5187
+
+GET {{Ednevnik_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
