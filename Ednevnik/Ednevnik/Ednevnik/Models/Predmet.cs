@@ -1,6 +1,7 @@
 ﻿namespace Ednevnik.Models
 {
-    public class Predmet
+    public class Predmet:Entitet
     {
+        public string? Naziv { get; set; }
     }
 }
