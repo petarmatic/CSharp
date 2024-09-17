@@ -36,7 +36,7 @@ create table ocjene(
 	id int not null primary key identity(1,1),
 	ucenik_id int,
 	predmet_id int,
-	ocjena varchar(255),
+	VrijednostOcjena varchar(255),
 	datum datetime
 );
 
