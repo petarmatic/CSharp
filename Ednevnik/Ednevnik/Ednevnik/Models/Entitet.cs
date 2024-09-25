@@ -6,6 +6,6 @@ namespace Ednevnik.Models
     {
 
         [Key] 
-        public int? Id { get; set; }
+        public int Id { get; set; }
     }
 }

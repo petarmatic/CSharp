@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Ednevnik.Controllers
 {
     [ApiController]
-    [Route("api/va/[controller]")]
+    [Route("api/v1/[controller]")]
     public class UcenikController : ControllerBase
     {
         private readonly EdnevnikContext _context;
@@ -58,6 +58,21 @@ namespace Ednevnik.Controllers
 
 
         }
+
+        [HttpDelete]
+        [Route("{id:int}")]
+        [Produces("application/json")]
+        public IActionResult Delete(int id)
+        {
+            var ucenikBaza = _context.Ucenici.Find(id);
+
+            _context.Ucenici.Remove(ucenikBaza);
+            _context.SaveChanges();
+
+            return Ok(new { poruka = "Uspješno obrisano" });
+
+        }
+
     }
 
 
