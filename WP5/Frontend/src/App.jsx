@@ -7,6 +7,7 @@ import { RouteNames } from './constants';
 import Pocetna from './pages/Pocetna';
 import SmjeroviPregled from './pages/smjerovi/SmjeroviPregled';
 
+
 function App() {
 
   return (
@@ -14,14 +15,13 @@ function App() {
     <Container>
       <NavBarEdunova />
       <Routes>
-        <Route path={RouteNames.HOME} element={<Pocetna/>}/>
+        <Route path={RouteNames.HOME} element={<Pocetna/>} />
 
         <Route path={RouteNames.SMJER_PREGLED} element={<SmjeroviPregled/>}/>
+
       </Routes>
-      <HR>
+      <hr/>
       &copy; Edunova
-      </HR>
-      
     </Container>
     
     </>
