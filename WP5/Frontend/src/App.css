@@ -3,3 +3,19 @@
     font-weight: bold;
     color: #b32064;
 }
+
+.desno{
+    text-align: right;
+  }
+  
+  .sredina{
+    text-align: center;
+  }
+  
+  .siroko{
+    width: 100%;
+  }
+  
+  .akcije{
+    margin-top: 20px;
+  }
