@@ -33,6 +33,21 @@ export default function SmjeroviPregled(){
         if(v) return 'green'
         return 'red'
     }
+    function obrisi(sifra){
+        if(!confirm('Sigurno obrisati')){
+            return;
+        }
+        brisanjeSmjera(sifra)
+    }
+    async function brisanjeSmjera(sifra) {
+        
+        const odgovor = await SmjerService.brisanje(sifra);
+        if(odgovor.greska){
+            alert(odgovor.poruka)
+            return
+        }
+        dohvatiSmjerove();
+    }
 
     return(
         <>
@@ -78,7 +93,14 @@ export default function SmjeroviPregled(){
                             color={vaucer(smjer.vaucer)}
                             />
                         </td>
-                        <td>Akcija</td>
+                        <td>
+                        <Button
+                            variant="danger"
+                            onClick={()=>obrisi(smjer.sifra)}
+                            >
+                                Obriši
+                                </Button>
+                        </td>
                     </tr>
                 ))}
             </tbody>

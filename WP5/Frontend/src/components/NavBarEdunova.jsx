@@ -18,7 +18,7 @@ export default function NavBarEdunova(){
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                    <Nav.Link href="http://pmatic-001-site1.ctempurl.com/swagger/index.html" target='_blank'>Swagger</Nav.Link>
+                    <Nav.Link href="http://tjakopec-001-site2.ftempurl.com/swagger/index.html" target='_blank'>Swagger</Nav.Link>
                     <NavDropdown title="Programi" id="basic-nav-dropdown">
                         <NavDropdown.Item
 
