@@ -10,4 +10,4 @@ export const RouteNames = {
 
 
 
-export const BACKEND_URL='http://pmatic-001-site1.ctempurl.com/api/v1'
+// export const BACKEND_URL='http://pmatic-001-site1.ctempurl.com/api/v1'
