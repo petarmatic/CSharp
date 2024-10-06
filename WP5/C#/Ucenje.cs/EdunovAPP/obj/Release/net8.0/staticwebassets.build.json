@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "hLVkl/9hCNFn8EUyDHCFtZJR7lmXQOLQOa/ZuqVY/4U=",
+  "Source": "EdunovAPP",
+  "BasePath": "_content/EdunovAPP",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "EdunovAPP\\wwwroot",
+      "Source": "EdunovAPP",
+      "ContentRoot": "C:\\Users\\petar\\Documents\\GitHub\\CSharp\\WP5\\C#\\Ucenje.cs\\EdunovAPP\\wwwroot\\",
+      "BasePath": "_content/EdunovAPP",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\petar\\Documents\\GitHub\\CSharp\\WP5\\C#\\Ucenje.cs\\EdunovAPP\\wwwroot\\assets\\index-BC747eBx.css",
+      "SourceId": "EdunovAPP",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\petar\\Documents\\GitHub\\CSharp\\WP5\\C#\\Ucenje.cs\\EdunovAPP\\wwwroot\\",
+      "BasePath": "_content/EdunovAPP",
+      "RelativePath": "assets/index-BC747eBx.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\index-BC747eBx.css"
+    },
+    {
+      "Identity": "C:\\Users\\petar\\Documents\\GitHub\\CSharp\\WP5\\C#\\Ucenje.cs\\EdunovAPP\\wwwroot\\assets\\index-CIwszkh2.js",
+      "SourceId": "EdunovAPP",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\petar\\Documents\\GitHub\\CSharp\\WP5\\C#\\Ucenje.cs\\EdunovAPP\\wwwroot\\",
+      "BasePath": "_content/EdunovAPP",
+      "RelativePath": "assets/index-CIwszkh2.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\index-CIwszkh2.js"
+    },
+    {
+      "Identity": "C:\\Users\\petar\\Documents\\GitHub\\CSharp\\WP5\\C#\\Ucenje.cs\\EdunovAPP\\wwwroot\\index.html",
+      "SourceId": "EdunovAPP",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\petar\\Documents\\GitHub\\CSharp\\WP5\\C#\\Ucenje.cs\\EdunovAPP\\wwwroot\\",
+      "BasePath": "_content/EdunovAPP",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
+}

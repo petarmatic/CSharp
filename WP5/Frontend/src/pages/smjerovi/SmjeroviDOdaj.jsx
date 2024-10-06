@@ -1,80 +1,132 @@
+import { useEffect, useState } from "react"
 import SmjerService from "../../services/SmjerService"
-import { Button, Row, Col, Form } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
+import { NumericFormat } from "react-number-format";
 import moment from "moment";
+import { GrValidate } from "react-icons/gr";
 import { Link, useNavigate } from "react-router-dom";
 import { RouteNames } from "../../constants";
 
 
-export default function SmjeroviDodaj(){
+export default function SmjeroviPregled(){
 
     const navigate = useNavigate()
 
-    async function dodaj(smjer) {
-        //console.log(smjer)
-        //console.log(JSON.stringify(smjer))
-        const odgovor = await SmjerService.dodaj(smjer)
+    const[smjerovi, setSmjerovi] = useState();
+
+    async function dohvatiSmjerove(){
+        const odgovor = await SmjerService.get();
         if(odgovor.greska){
             alert(odgovor.poruka)
-            return;
+            return
         }
-        navigate(RouteNames.SMJER_PREGLED)
+        //debugger; // ovo radi u Chrome inspect (ali i ostali preglednici)
+        setSmjerovi(odgovor.poruka)
+    } 
+
+    // Ovaj hook (kuka) se izvodi dolaskom na stranicu Smjerovi
+    useEffect(()=>{
+       dohvatiSmjerove();
+    },[])
+
+    function formatirajDatum(datum){
+        if(datum==null){
+            return 'Nije definirano';
+        }
+        return moment.utc(datum).format('DD. MM. YYYY.')
     }
 
-    function obradiSubmit(e){ // e je event
-        e.preventDefault(); // nemoj odraditi zahtjev na server
-        let podaci = new FormData(e.target)
-        //console.log(podaci.get('naziv'))
-        dodaj({
-            naziv: podaci.get('naziv'),
-            trajanje: parseInt(podaci.get('trajanje')),
-            cijena: parseFloat(podaci.get('cijena')),
-            izvodiSeOd: moment.utc(podaci.get('izvodiSeOd')),
-            vaucer: podaci.get('vaucer')=='on' ? true : false 
-        })
+    function vaucer(v){
+        if(v==null) return 'gray'
+        if(v) return 'green'
+        return 'red'
     }
+
+    function obrisi(sifra){
+        if(!confirm('Sigurno obrisati')){
+            return;
+        }
+        brisanjeSmjera(sifra)
+    }
+
+    async function brisanjeSmjera(sifra) {
+        
+        const odgovor = await SmjerService.brisanje(sifra);
+        if(odgovor.greska){
+            alert(odgovor.poruka)
+            return
+        }
+        dohvatiSmjerove();
+    }
+
 
     return(
         <>
-        Dodavanje smjera
-        <Form onSubmit={obradiSubmit}>
+        <Link to={RouteNames.SMJER_NOVI}
+        className="btn btn-success siroko">Dodaj novi smjer</Link>
+        <Table striped bordered hover responsive>
+            <thead>
+                <tr>
+                    <th>Naziv</th>
+                    <th>Trajanje</th>
+                    <th>Cijena</th>
+                    <th>Izvodi se od</th>
+                    <th>Vaučer</th>
+                    <th>Akcija</th>
+                </tr>
+            </thead>
+            <tbody>
+                {smjerovi && smjerovi.map((smjer,index)=>(
+                    <tr key={index}>
+                        <td>
+                            {smjer.naziv}
+                        </td>
+                        <td className={smjer.trajanje==null ? 'sredina' : 'desno'}>
+                            {smjer.trajanje==null ? 'Nije definirano' : smjer.trajanje}
+                        </td>
+                        <td className={smjer.cijena==null ? 'sredina' : 'desno'}>
 
-            <Form.Group controlId="naziv">
-                <Form.Label>Naziv</Form.Label>
-                <Form.Control type="text" name="naziv" required />
-            </Form.Group>
-
-            <Form.Group controlId="trajanje">
-                <Form.Label>Trajanje</Form.Label>
-                <Form.Control type="number" min={10} max={500} name="trajanje" required />
-            </Form.Group>
-
-
-            <Form.Group controlId="cijena">
-                <Form.Label>Cijena</Form.Label>
-                <Form.Control type="number" step={0.01} name="cijena"  />
-            </Form.Group>
-
-            <Form.Group controlId="izvodiSeOd">
-                <Form.Label>Izvodi se od</Form.Label>
-                <Form.Control type="date" name="izvodiSeOd" />
-            </Form.Group>
-
-            <Form.Group controlId="vaucer">
-                <Form.Check label="Vaučer" name="vaucer" />
-            </Form.Group>
-
-        <Row className="akcije">
-            <Col xs={6} sm={12} md={3} lg={6} xl={6} xxl={6}>
-            <Link to={RouteNames.SMJER_PREGLED} 
-            className="btn btn-danger siroko">Odustani</Link>
-            </Col>
-            <Col xs={6} sm={12} md={9} lg={6} xl={6} xxl={6}>
-            <Button variant="success"
-            type="submit"
-            className="siroko">Dodaj smjer</Button>
-            </Col>
-        </Row>
-        </Form>
+                             {smjer.cijena==null ? 'Nije definirano' : 
+                             <NumericFormat 
+                             value={smjer.cijena}
+                             displayType={'text'}
+                             thousandSeparator='.'
+                             decimalSeparator=','
+                             prefix={'€'}
+                             decimalScale={2}
+                             fixedDecimalScale
+                             />
+                             
+                             }
+                        </td>
+                        <td className="sredina">
+                            {formatirajDatum(smjer.izvodiSeOd)}
+                        </td>
+                        <td className="sredina">
+                            <GrValidate 
+                            size={30}
+                            color={vaucer(smjer.vaucer)}
+                            />
+                            
+                        </td>
+                        <td>
+                            <Button
+                            variant="danger"
+                            onClick={()=>obrisi(smjer.sifra)}
+                            >
+                                Obriši
+                            </Button>
+                            &nbsp;&nbsp;&nbsp;
+                            <Button
+                            onClick={()=>navigate(`/smjerovi/${smjer.sifra}`)}
+                            >
+                                Promjena
+                            </Button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
         </>
     )
 }

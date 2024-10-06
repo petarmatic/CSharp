@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\petar\\Documents\\GitHub\\CSharp\\WP5\\C#\\Ucenje.cs\\EdunovAPP\\wwwroot\\assets\\index-BC747eBx.css",
+      "PackagePath": "staticwebassets\\assets\\index-BC747eBx.css"
+    },
+    {
+      "Id": "C:\\Users\\petar\\Documents\\GitHub\\CSharp\\WP5\\C#\\Ucenje.cs\\EdunovAPP\\wwwroot\\assets\\index-CIwszkh2.js",
+      "PackagePath": "staticwebassets\\assets\\index-CIwszkh2.js"
+    },
+    {
+      "Id": "C:\\Users\\petar\\Documents\\GitHub\\CSharp\\WP5\\C#\\Ucenje.cs\\EdunovAPP\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.EdunovAPP.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.build.EdunovAPP.props",
+      "PackagePath": "build\\EdunovAPP.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.EdunovAPP.props",
+      "PackagePath": "buildMultiTargeting\\EdunovAPP.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildTransitive.EdunovAPP.props",
+      "PackagePath": "buildTransitive\\EdunovAPP.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react"
 import SmjerService from "../../services/SmjerService"
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
+import { NumericFormat } from "react-number-format";
+import moment from "moment";
+import { GrValidate } from "react-icons/gr";
+import { Link, useNavigate } from "react-router-dom";
+import { RouteNames } from "../../constants";
 
 
 export default function SmjeroviPregled(){
 
-    const[smjerovi,SetSmjerovi] = useState();
+    const navigate = useNavigate()
+
+    const[smjerovi, setSmjerovi] = useState();
 
     async function dohvatiSmjerove(){
-       const odgovor= await SmjerService.get();
-       if(odgovor.greska){
-        alert(odgovor.poruka)
-        return
-       }
-       SetSmjerovi(odgovor.poruka)
+        const odgovor = await SmjerService.get();
+        if(odgovor.greska){
+            alert(odgovor.poruka)
+            return
+        }
+        //debugger; // ovo radi u Chrome inspect (ali i ostali preglednici)
+        setSmjerovi(odgovor.poruka)
     } 
 
     // Ovaj hook (kuka) se izvodi dolaskom na stranicu Smjerovi
@@ -33,12 +41,14 @@ export default function SmjeroviPregled(){
         if(v) return 'green'
         return 'red'
     }
+
     function obrisi(sifra){
         if(!confirm('Sigurno obrisati')){
             return;
         }
         brisanjeSmjera(sifra)
     }
+
     async function brisanjeSmjera(sifra) {
         
         const odgovor = await SmjerService.brisanje(sifra);
@@ -49,12 +59,15 @@ export default function SmjeroviPregled(){
         dohvatiSmjerove();
     }
 
+
     return(
         <>
+        <Link to={RouteNames.SMJER_NOVI}
+        className="btn btn-success siroko">Dodaj novi smjer</Link>
         <Table striped bordered hover responsive>
             <thead>
                 <tr>
-                <th>Naziv</th>
+                    <th>Naziv</th>
                     <th>Trajanje</th>
                     <th>Cijena</th>
                     <th>Izvodi se od</th>
@@ -63,26 +76,28 @@ export default function SmjeroviPregled(){
                 </tr>
             </thead>
             <tbody>
-                {smjerovi&&smjerovi.map((smjer,index)=>(
+                {smjerovi && smjerovi.map((smjer,index)=>(
                     <tr key={index}>
                         <td>
                             {smjer.naziv}
                         </td>
                         <td className={smjer.trajanje==null ? 'sredina' : 'desno'}>
-                            {smjer.trajanje== null ? 'Nije definirano' : smjer.trajanje}
+                            {smjer.trajanje==null ? 'Nije definirano' : smjer.trajanje}
                         </td>
                         <td className={smjer.cijena==null ? 'sredina' : 'desno'}>
-                        {smjer.cijena==null ? 'Nije definirano' : 
-                        <NumericFormat 
-                        value={smjer.cijena}
-                        displayType={'text'}
-                        thousandSeparator='.'
-                        decimalSeparator=','
-                        prefix={'€'}
-                        decimalScale={2}
-                        fixedDecimalScale
-                        />
-                        }
+
+                             {smjer.cijena==null ? 'Nije definirano' : 
+                             <NumericFormat 
+                             value={smjer.cijena}
+                             displayType={'text'}
+                             thousandSeparator='.'
+                             decimalSeparator=','
+                             prefix={'€'}
+                             decimalScale={2}
+                             fixedDecimalScale
+                             />
+                             
+                             }
                         </td>
                         <td className="sredina">
                             {formatirajDatum(smjer.izvodiSeOd)}
@@ -92,20 +107,26 @@ export default function SmjeroviPregled(){
                             size={30}
                             color={vaucer(smjer.vaucer)}
                             />
+                            
                         </td>
                         <td>
-                        <Button
+                            <Button
                             variant="danger"
                             onClick={()=>obrisi(smjer.sifra)}
                             >
                                 Obriši
-                                </Button>
+                            </Button>
+                            &nbsp;&nbsp;&nbsp;
+                            <Button
+                            onClick={()=>navigate(`/smjerovi/${smjer.sifra}`)}
+                            >
+                                Promjena
+                            </Button>
                         </td>
                     </tr>
                 ))}
             </tbody>
         </Table>
-        
         </>
     )
 }
