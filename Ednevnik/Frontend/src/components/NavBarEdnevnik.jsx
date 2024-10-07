@@ -2,7 +2,7 @@
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
+import Container from 'react-bootstrap/Container';
 
 
 export default function NavBarEdnevnik(){
@@ -18,8 +18,8 @@ export default function NavBarEdnevnik(){
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="https://pmatic-001-site1.ctempurl.com/swagger/index.html">Swagger</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <NavDropdown title="Ucenici" id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Ucenici</NavDropdown.Item>
               
              
              
