@@ -1,13 +1,21 @@
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import UcenikService from ".../.../service/UcenikService"
+import UcenikService from '../../services/UcenikService';
+
+
+
 
 
 export default function UceniciPregled() {
-const[ucenici,setUcenici]=useState();
+  const[ucenici,setUcenici]=useState();
 
 async function dohvatiUcenike() {
-    await UcenikService.get().then((odgovor) => {setUcenici(odgovor);}).catch((e)=>{console.log(e)});
+    const odgovor=await UcenikService.get();
+    if(odgovor.greska){
+      alert(odgovor.poruka)
+      return
+    }
+    setUcenici(odgovor.poruka)
     
 }
 useEffect(() => {
@@ -39,7 +47,9 @@ useEffect(() => {
          </tr>
           )}
         </tbody>
+        
       </Table>
+      
     </>
-  );
+  )
 }
