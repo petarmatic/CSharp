@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import Table from 'react-bootstrap/Table';
-import UcenikService from '../../services/UcenikService';
+import {  Table } from "react-bootstrap";
+import UcenikService from "../../services/UcenikService";
+import { useEffect, useState } from "react";
+import {  useNavigate } from "react-router-dom";
 
 
 
@@ -8,6 +9,8 @@ import UcenikService from '../../services/UcenikService';
 
 export default function UceniciPregled() {
   const[ucenici,setUcenici]=useState();
+
+  const navigate =useNavigate();
 
 async function dohvatiUcenike() {
     const odgovor=await UcenikService.get();
@@ -35,13 +38,13 @@ useEffect(() => {
           </tr>
         </thead>
         <tbody>
-          {ucenici.map((e,index)=>
+          {ucenici&&ucenici.map((e,index)=>
            <tr key={index}>
            <td>{e.id}</td> 
            <td>{e.ime}</td>
            <td>{e.prezime}</td>
            <td>{e.oib}</td>
-           <td>{e.skolaskaGodina}
+           <td>{e.skolskaGodina}
 
            </td>
          </tr>

@@ -1,19 +1,18 @@
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useNavigate } from 'react-router-dom'; // Dodaj useNavigate
+import { useNavigate } from 'react-router-dom';
 import { RouteNames } from '../constants';
 import Container from 'react-bootstrap/Container';
 
 export default function NavBarEdnevnik() {
-  const navigate = useNavigate(); // Inicijaliziraj navigate
+  const navigate = useNavigate();
 
   return (
     <> 
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand href="#home">Ednevnik</Navbar.Brand>
-          <Navbar.Brand className='ruka' onClick={() => navigate(RouteNames.HOME)}>
+          <Navbar.Brand onClick={() => navigate(RouteNames.HOME)} className="ruka">
             Ednevnik
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
