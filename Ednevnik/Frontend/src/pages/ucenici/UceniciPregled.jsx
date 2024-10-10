@@ -12,6 +12,10 @@ export default function UceniciPregled() {
 
   const navigate =useNavigate();
 
+
+
+
+
 async function dohvatiUcenike() {
     const odgovor=await UcenikService.get();
     if(odgovor.greska){
@@ -44,7 +48,7 @@ useEffect(() => {
            <td>{e.ime}</td>
            <td>{e.prezime}</td>
            <td>{e.oib}</td>
-           <td>{e.skolskaGodina}
+           <td>{e.skolska_godina}
 
            </td>
          </tr>
