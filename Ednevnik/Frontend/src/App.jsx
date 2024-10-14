@@ -6,8 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import { RouteNames } from './constants';
 import Pocetna from './pages/ucenici/Pocetna';
 import UceniciPregled from './pages/ucenici/UceniciPregled';
-
-
+import UceniciDodaj from './pages/ucenici/UceniciDodaj'; 
 function App() {
   return (
     <>
@@ -15,15 +14,16 @@ function App() {
         <NavBarEdnevnik />
         
         <Routes>
-          <Route path={RouteNames.HOME} element={<Pocetna/>} />
-          <Route path={RouteNames.UCENIK_PREGLED} element={<UceniciPregled/>}/>
+          <Route path={RouteNames.HOME} element={<Pocetna />} />
+          <Route path={RouteNames.UCENIK_PREGLED} element={<UceniciPregled />} />
+          <Route path={RouteNames.UCENIK_NOVI} element={<UceniciDodaj />} /> 
         </Routes>
         
         <hr />
         &copy; Ednevnik
       </Container>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,8 +1,8 @@
 import {  Table } from "react-bootstrap";
 import UcenikService from "../../services/UcenikService";
 import { useEffect, useState } from "react";
-import {  useNavigate } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom"; 
+import { RouteNames } from "../../constants";
 
 
 
@@ -31,6 +31,8 @@ useEffect(() => {
 
   return (
     <>
+      <Link to={RouteNames.UCENIK_NOVI}
+        className="btn btn-success ">Dodaj novog učenika</Link>
       <Table striped bordered hover responsive>
         <thead>
           <tr>
@@ -42,15 +44,15 @@ useEffect(() => {
           </tr>
         </thead>
         <tbody>
-          {ucenici&&ucenici.map((e,index)=>
+          {ucenici&&ucenici.map((ucenik,index)=>
            <tr key={index}>
-           <td>{e.id}</td> 
-           <td>{e.ime}</td>
-           <td>{e.prezime}</td>
-           <td>{e.oib}</td>
-           <td>{e.skolska_godina}
+              <td>{ucenik.id}</td> 
+              <td>{ucenik.ime}</td>
+              <td>{ucenik.prezime}</td>
+              <td>{ucenik.oib}</td>
+              <td>{ucenik.skolska_godina}
 
-           </td>
+              </td>
          </tr>
           )}
         </tbody>
