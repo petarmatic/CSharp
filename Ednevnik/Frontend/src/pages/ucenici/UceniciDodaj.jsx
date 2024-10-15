@@ -1,7 +1,7 @@
-import { Form, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UcenikService from "../../services/UcenikService";
 import { RouteNames } from "../../constants";
-
+import { Button, Row, Col, Form } from "react-bootstrap";
 
 
 
@@ -25,7 +25,7 @@ export default function UceniciDodaj(){
             ime:podaci.get('naziv'),
             prezime:podaci.get('prezime'),
             oib:podaci.get('oib'),
-            skolskaGodina:podaci.get('skolskaGodina')
+            skolskaGodina:podaci.get('skolska_godina')
 
         })
     }
@@ -34,6 +34,7 @@ export default function UceniciDodaj(){
         <>
         Dodavanje učenika
         <Form onSubmit={obradiSubmit}>
+
             <Form.Group controlId="ime">
                 <Form.Label>Ime</Form.Label>
                 <Form.Control type="text" name="ime" required />
@@ -49,9 +50,9 @@ export default function UceniciDodaj(){
                 <Form.Control type="text" name="oib" required />
             </Form.Group>
 
-            <Form.Group controlId="skolskaGodina">
+            <Form.Group controlId="skolska_godina">
                 <Form.Label>Školska Godina</Form.Label>
-                <Form.Control type="text" name="skolskaGodina" required />
+                <Form.Control type="text" name="skolska_godina" required />
             </Form.Group>
 
         <Row className="akcije">

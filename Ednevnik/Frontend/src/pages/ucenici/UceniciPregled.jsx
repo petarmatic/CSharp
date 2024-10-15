@@ -3,14 +3,16 @@ import UcenikService from "../../services/UcenikService";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; 
 import { RouteNames } from "../../constants";
-
+import moment from "moment";
 
 
 
 export default function UceniciPregled() {
+  const navigate =useNavigate();
+
   const[ucenici,setUcenici]=useState();
 
-  const navigate =useNavigate();
+ 
 
 
 
@@ -28,6 +30,16 @@ async function dohvatiUcenike() {
 useEffect(() => {
     dohvatiUcenike();
   }, []);
+
+
+  function formatirajDatum(datum){
+    if(datum==null){
+        return 'Nije definirano';
+    }
+    return moment.utc(datum).format('DD. MM. YYYY.')
+}
+
+
 
   return (
     <>
@@ -50,9 +62,7 @@ useEffect(() => {
               <td>{ucenik.ime}</td>
               <td>{ucenik.prezime}</td>
               <td>{ucenik.oib}</td>
-              <td>{ucenik.skolska_godina}
-
-              </td>
+              <td>{formatirajDatum(ucenik.skolska_godina)}</td>
          </tr>
           )}
         </tbody>
