@@ -19,7 +19,7 @@ function App() {
           <Route path={RouteNames.HOME} element={<Pocetna />} />
 
           <Route path={RouteNames.UCENIK_PREGLED} element={<UceniciPregled />} />
-          <Route path={RouteNames.UCENIK_NOVI} element={<UceniciDodaj />} /> 
+          <Route path={RouteNames.UCENIK_DODAJ} element={<UceniciDodaj />} /> 
           <Route path={RouteNames.UCENIK_PROMJENA} element={<UceniciPromjena />} />
 
           <Route path={RouteNames.PREDMET_PREGLED} element={<PredmetiPregled />} />

@@ -27,7 +27,7 @@ useEffect(() =>{
 return(
     <>
     <Link to={RouteNames.PREDMET_NOVI}
-        className="btn btn-success ">Dodaj novi predmet</Link>
+        className="btn btn-success "> OVDJE IDE DODAJ predmet</Link>
       <Table striped bordered hover responsive></Table>
         <thead>
             <th>Naziv</th>

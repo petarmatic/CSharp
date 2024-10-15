@@ -43,7 +43,7 @@ useEffect(() => {
 
   return (
     <>
-      <Link to={RouteNames.UCENIK_NOVI}
+      <Link to={RouteNames.UCENIK_DODAJ}
         className="btn btn-success ">Dodaj novog učenika</Link>
       <Table striped bordered hover responsive>
         <thead>
@@ -62,7 +62,7 @@ useEffect(() => {
               <td>{ucenik.ime}</td>
               <td>{ucenik.prezime}</td>
               <td>{ucenik.oib}</td>
-              <td>{formatirajDatum(ucenik.skolska_godina)}</td>
+              <td>{ucenik.skolskaGodina}</td>
             </tr>
           )}
         </tbody>
