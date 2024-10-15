@@ -57,13 +57,13 @@ useEffect(() => {
         </thead>
         <tbody>
           {ucenici&&ucenici.map((ucenik,index)=>
-           <tr key={index}>
+            <tr key={index}>
               <td>{ucenik.id}</td> 
               <td>{ucenik.ime}</td>
               <td>{ucenik.prezime}</td>
               <td>{ucenik.oib}</td>
               <td>{formatirajDatum(ucenik.skolska_godina)}</td>
-         </tr>
+            </tr>
           )}
         </tbody>
         

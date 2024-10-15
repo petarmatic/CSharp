@@ -25,6 +25,9 @@ export default function NavBarEdnevnik() {
                 <NavDropdown.Item onClick={() => navigate(RouteNames.UCENIK_PREGLED)}>
                   Pregled učenika
                 </NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>navigate(RouteNames.PREDMET_PREGLED)}>
+                  Predmeti
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

@@ -8,6 +8,7 @@ import Pocetna from './pages/ucenici/Pocetna';
 import UceniciPregled from './pages/ucenici/UceniciPregled';
 import UceniciDodaj from './pages/ucenici/UceniciDodaj'; 
 import UceniciPromjena from './pages/ucenici/UceniciPromjena';
+import PredmetiPregled from './pages/predmeti/PredmetiPregled';
 function App() {
   return (
     <>
@@ -20,6 +21,8 @@ function App() {
           <Route path={RouteNames.UCENIK_PREGLED} element={<UceniciPregled />} />
           <Route path={RouteNames.UCENIK_NOVI} element={<UceniciDodaj />} /> 
           <Route path={RouteNames.UCENIK_PROMJENA} element={<UceniciPromjena />} />
+
+          <Route path={RouteNames.PREDMET_PREGLED} element={<PredmetiPregled />} />
         </Routes>
         
         <hr />
