@@ -15,7 +15,7 @@ async function get(){
 }
 
 async function dodaj(ucenik) {
-    return await HttpService.post('/Ucenik, ucenik')
+    return await HttpService.post('/Ucenik', ucenik)
     .then((odgovor)=>{
         return{greska: false, poruka:odgovor.data}
     })

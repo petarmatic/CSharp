@@ -22,10 +22,10 @@ export default function UceniciDodaj(){
         e.preventDefault();
         let podaci=new FormData(e.target)
         dodaj({
-            ime:podaci.get('naziv'),
+            ime:podaci.get('ime'),
             prezime:podaci.get('prezime'),
             oib:podaci.get('oib'),
-            skolskaGodina:podaci.get('skolska_godina')
+            skolskaGodina:podaci.get('skolskaGodina')
 
         })
     }
@@ -52,7 +52,7 @@ export default function UceniciDodaj(){
 
             <Form.Group controlId="skolska_godina">
                 <Form.Label>Školska Godina</Form.Label>
-                <Form.Control type="text" name="skolska_godina" required />
+                <Form.Control type="text" name="skolskaGodina" required />
             </Form.Group>
 
         <Row className="akcije">

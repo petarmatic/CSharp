@@ -68,7 +68,7 @@ return(
 
             <Form.Group controlId="skolsa_godina">
                 <Form.Label>Školsa godina</Form.Label>
-                <Form.Control type="text" name="skolska_godina"  defaultValue={ucenik.skolska_godina}/>
+                <Form.Control type="text" name="skolskaGgodina"  defaultValue={ucenik.skolska_godina}/>
             </Form.Group>
 
 
