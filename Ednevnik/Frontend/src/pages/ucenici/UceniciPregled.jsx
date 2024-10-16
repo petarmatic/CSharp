@@ -1,9 +1,9 @@
-import {  Table } from "react-bootstrap";
+import {  Button, Table } from "react-bootstrap";
 import UcenikService from "../../services/UcenikService";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; 
 import { RouteNames } from "../../constants";
-import moment from "moment";
+
 
 
 
@@ -32,11 +32,20 @@ useEffect(() => {
   }, []);
 
 
-  function formatirajDatum(datum){
-    if(datum==null){
-        return 'Nije definirano';
+  function obrisi(id){
+    if(!confirm('Sigurno obrisati')){
+        return;
     }
-    return moment.utc(datum).format('DD. MM. YYYY.')
+    brisanjeUcenika(id)
+}
+
+async function brisanjeUcenika(id) {
+    const odgovor=await UcenikService.brisanje(id);
+    if(odgovor.greska){
+        alert(odgovor.poruka)
+        return
+    }
+    dohvatiUcenike();
 }
 
 
@@ -63,6 +72,19 @@ useEffect(() => {
               <td>{ucenik.prezime}</td>
               <td>{ucenik.oib}</td>
               <td>{ucenik.skolskaGodina}</td>
+
+              <Button
+              variant="danger"
+              onClick={()=>obrisi(ucenik.id)}
+              >Obriši </Button>
+              &nbsp;&nbsp;&nbsp;
+              <Button
+              onClick={()=>navigate(`¨/ucenici/${ucenik.id}`)}
+              >
+                Promjena
+              </Button>
+
+
             </tr>
           )}
         </tbody>

@@ -8,7 +8,7 @@ async function get(){
         return {greska: false, poruka: odgovor.data}
     })
     .catch((e)=>{
-        console.log(e)
+        //console.log(e)
         return {greska: true, poruka: 'Problem kod dohvaćanja učenika'}   
     })
    
@@ -34,7 +34,20 @@ async function dodaj(ucenik) {
     
 }
 
+async function brisanje(id){
+    return await HttpService.delete('/Ucenik/' + id)
+    .then(()=>{
+        return{greska:false,poruka:'Obrisano'}
+    })
+    .catch(()=>{
+        return{greska:true, poruka:'Problem kod brisanja učenika'}
+    })    
+}
+
+
+
 export default{
     get,
-    dodaj
+    dodaj,
+    brisanje
 }
