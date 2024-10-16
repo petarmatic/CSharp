@@ -44,10 +44,31 @@ async function brisanje(id){
     })    
 }
 
+async function getById(id) {
+    return await HttpService.get('/Ucenik/'+id)
+    .then((odgovor)=>{
+        return{greska:false,poruka:odgovor.data}
+    })
+    .catch((e)=>{
+        return{greska:true,poruka:'Problem kod dohvaćanja učenika s id'+id}
+    })
+}
+
+async function promjena(id,ucenik) {
+    return await HttpService.put('/Ucenik/'+id,ucenik)
+    .then(()=>{
+        return{greska:false,poruka:'Dodano'}
+    })
+    .catch(()=>{
+        return{greska:true,poruka:'Problem kod dodavanja učenika'}
+    })
+}
 
 
 export default{
     get,
     dodaj,
-    brisanje
+    brisanje,
+    getById,
+    promjena
 }
