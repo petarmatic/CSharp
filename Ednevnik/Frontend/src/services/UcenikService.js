@@ -28,7 +28,7 @@ async function dodaj(ucenik) {
                 }
                 return {greska: true, poruka: poruke}
             default:
-                return {greska: true, poruka: 'Ucenik se ne može dodati!'}
+                return {greska: true, poruka: 'Učenik se ne može dodati!'}
         }
     })
     

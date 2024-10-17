@@ -23,6 +23,7 @@ function App() {
           <Route path={RouteNames.UCENIK_PROMJENA} element={<UceniciPromjena />} />
 
           <Route path={RouteNames.PREDMET_PREGLED} element={<PredmetiPregled />} />
+          <Route path={RouteNames.PREDMET_DODAJ} element={<PredmetiPregled />} />
         </Routes>
         
         <hr />

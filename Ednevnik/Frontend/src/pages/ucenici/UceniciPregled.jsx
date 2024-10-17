@@ -13,11 +13,6 @@ export default function UceniciPregled() {
   const[ucenici,setUcenici]=useState();
 
  
-
-
-
-
-
 async function dohvatiUcenike() {
     const odgovor=await UcenikService.get();
     if(odgovor.greska){

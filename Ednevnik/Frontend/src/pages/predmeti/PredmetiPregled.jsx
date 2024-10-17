@@ -5,7 +5,7 @@ import { RouteNames } from "../../constants";
 import PredmetService from "../../services/PredmetService";
 
 export default function PredmetiPregled() {
-    const [predmeti, setPredmeti] = useState([]);
+    const [predmeti, setPredmeti] = useState();
     const navigate = useNavigate();
 
     async function dohvatiPredmete() {
@@ -23,14 +23,13 @@ export default function PredmetiPregled() {
 
     return (
         <>
-            <Link to={RouteNames.PREDMET_NOVI} className="btn btn-success">
-                OVDJE IDE DODAJ predmet
-            </Link>
+            <Link to={RouteNames.PREDMET_DODAJ}
+                 className="btn btn-success ">Dodaj novi predmet</Link>
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
                         <th>Naziv</th>
-                        <th>Akcije</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
