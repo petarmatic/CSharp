@@ -7,7 +7,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 
 export default function UceniciPromjena(){
 
-    const [ucenik, setUcenik] = useState({}); // Prazan objekt kao inicijalna vrijednost
+    const [ucenik, setUcenik] = useState({}); 
     const navigate = useNavigate();
     const routeParams = useParams();
 
@@ -17,7 +17,7 @@ export default function UceniciPromjena(){
             alert(odgovor.poruka);
             return;
         }
-        setUcenik(odgovor.poruka); // Postavi dohvaćene podatke u state
+        setUcenik(odgovor.poruka); 
     }
 
     useEffect(() => {
@@ -48,6 +48,7 @@ export default function UceniciPromjena(){
         <>
             Promjena učenika
             <Form onSubmit={obradiSubmit}>
+
                 <Form.Group controlId="ime">
                     <Form.Label>Ime</Form.Label>
                     <Form.Control 
@@ -87,7 +88,7 @@ export default function UceniciPromjena(){
                 </Form.Group>
 
                 <hr />
-                <Row>
+                <Row className="akcije">
                     <Col xs={6} sm={6} md={3} lg={6} xl={6} xxl={6}>
                         <Link to={RouteNames.UCENIK_PREGLED}
                             className="btn btn-danger siroko">
