@@ -3,10 +3,10 @@
 namespace Ednevnik.Models.DTO
 {
     public record PredmetDTOInsertUpdate
-    {
+    (
         [Required(ErrorMessage = "Naziv obavezno")]
-        string? Naziv;
+        string? Naziv
 
-       
-    }
+      ); 
+    
 }
