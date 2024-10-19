@@ -1,4 +1,5 @@
 using Ednevnik.Data;
+using Ednevnik.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,8 @@ builder.Services.AddCors(opcije =>
     );
 
 });
+
+builder.Services.AddAutoMapper(typeof(EdnevnikMappingProfile));
 
 var app = builder.Build();
 
