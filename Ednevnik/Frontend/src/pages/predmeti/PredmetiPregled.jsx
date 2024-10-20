@@ -48,8 +48,8 @@ export default function PredmetiPregled() {
 
     return (
         <>
-            <Link to={RouteNames.PREDMET_NOVI} className="btn btn-success">
-                OVDJE IDE DODAJ predmet
+            <Link to={RouteNames.PREDMET_DODAJ} className="btn btn-success">
+                Dodaj novi predmet
             </Link>
             <Table striped bordered hover responsive>
                 <thead>

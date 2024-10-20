@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import {Link, useNavigate, useParams } from "react-router-dom";
 import PredmetService from "../../services/PredmetService";
 import { RouteNames } from "../../constants";
+import { Button, Col, Form, Row } from "react-bootstrap";
 
 
 
@@ -36,7 +37,7 @@ export default function PredmetiPromjena(){
     function obradiSubmit(e){
         e.preventDefault();
 
-        const podaci = new FormData(e.target);
+        let podaci = new FormData(e.target);
 
         promjena({
             naziv:podaci.get('naziv')
@@ -45,9 +46,10 @@ export default function PredmetiPromjena(){
 
 return(
     <>
+
     Promjena predmeta
-    
     <Form onSubmit={obradiSubmit}>
+
     <Form.Group controlId="naziv">
          <Form.Label>Naziv</Form.Label>
          <Form.Control type="text" name="naziv" required defaultValue={predmet.naziv}/>
@@ -56,7 +58,7 @@ return(
     <hr />
                 <Row>
                     <Col xs={6} sm={6} md={3} lg={6} xl={6} xxl={6}>
-                    <Link to={RouteNames.PREDMET_PREGLED_PREGLED}
+                    <Link to={RouteNames.PREDMET_PREGLED}
                     className="btn btn-danger siroko">
                     Odustani
                     </Link>
