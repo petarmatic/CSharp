@@ -4,11 +4,11 @@ export const RouteNames = {
 
     UCENIK_PREGLED:'/ucenici',
     UCENIK_DODAJ:'/ucenici/dodaj',
-    UCENIK_PROMJENA:'/ucenici/promjena',
+    UCENIK_PROMJENA:'/ucenici/:id',
 
     PREDMET_PREGLED:'/predmeti',
     PREDMET_DODAJ:'/predmeti/dodaj',
-    PREDMET_PROMJENA:'/predmeti/promjena'
+    PREDMET_PROMJENA:'/predmeti/:id'
 
 }
 

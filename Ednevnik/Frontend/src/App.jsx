@@ -10,6 +10,7 @@ import UceniciDodaj from './pages/ucenici/UceniciDodaj';
 import UceniciPromjena from './pages/ucenici/UceniciPromjena';
 import PredmetiPregled from './pages/predmeti/PredmetiPregled';
 import PredmetiDodaj from './pages/predmeti/PredmetiDodaj';
+import PredmetiPromjena from './pages/predmeti/PredmetiPromjena';
 function App() {
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
 
           <Route path={RouteNames.PREDMET_PREGLED} element={<PredmetiPregled />} />
           <Route path={RouteNames.PREDMET_DODAJ} element={<PredmetiDodaj />} />
+          <Route path={RouteNames.PREDMET_PROMJENA} element={<PredmetiPromjena />} />
         </Routes>
         
         <hr />

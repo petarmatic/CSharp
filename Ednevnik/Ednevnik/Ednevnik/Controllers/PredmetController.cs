@@ -14,6 +14,7 @@ namespace Ednevnik.Controllers
         {
         }
 
+        /*
         [HttpGet]
         public ActionResult<List<PredmetDTORead>> Get()
         {
@@ -30,6 +31,27 @@ namespace Ednevnik.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
         }
+        */
+
+        [HttpGet]
+        public ActionResult<List<PredmetDTORead>> Get()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new { poruka = ModelState });
+            }
+            try
+            {
+                var predmeti = _context.Predmeti.ToList(); 
+                return Ok(_mapper.Map<List<PredmetDTORead>>(predmeti));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
+        }
+
+
 
         [HttpGet]
         [Route("{id:int}")]

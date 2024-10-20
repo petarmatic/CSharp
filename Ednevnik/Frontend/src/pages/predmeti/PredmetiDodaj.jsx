@@ -1,64 +1,52 @@
 import { useNavigate } from "react-router-dom";
 import PredmetService from "../../services/PredmetService";
 import { RouteNames } from "../../constants";
+import { Link } from "react-router-dom";
+import { Button, Col, Form, Row } from "react-bootstrap"; 
 
-
-
-export default function PredmetiDodaj(){
-
+export default function PredmetiDodaj() {
     const navigate = useNavigate();
 
-    async function dodaj(e) {
-        const odgovor= await PredmetService.dodaj(e);
-        if(odgovor.greska){
+    async function dodaj(predmet) { 
+        const odgovor = await PredmetService.dodaj(predmet);
+        if (odgovor.greska) {
             alert(odgovor.poruka);
             return;
         }
-        navigate(RouteNames.UCENIK_PREGLED);
-        
+        navigate(RouteNames.PREDMET_PREGLED);
     }
 
-    function obradiSubmit(e){ 
+    function obradiSubmit(e) { 
         e.preventDefault();
-
         const podaci = new FormData(e.target);
-
         dodaj({
-            naziv:podaci.get('naziv')
+            naziv: podaci.get('naziv') 
         });
     }
 
-
-    return(
+    return (
         <>
-        Dodavanje novog Predmeta
-        <Form onSubmit={obradiSubmit}>
-            <Form.Group controlId="naziv">
-                <Form.Label>Naziv</Form.Label>
-                <Form.Control type="text" name="naziv" required />
-            </Form.Group>
+            <h2>Dodavanje novog Predmeta</h2>
+            <Form onSubmit={obradiSubmit}>
+                <Form.Group controlId="naziv">
+                    <Form.Label>Naziv</Form.Label>
+                    <Form.Control type="text" name="naziv" required />
+                </Form.Group>
         
-            <hr />
+                <hr />
                 <Row>
-                    <Col xs={6} sm={6} md={3} lg={6} xl={6} xxl={6}>
-                    <Link to={RouteNames.PREDMET_PREGLEDPREGLED}
-                    className="btn btn-danger siroko">
-                    Odustani
-                    </Link>
+                    <Col xs={6}>
+                        <Link to={RouteNames.PREDMET_PREGLED} className="btn btn-danger siroko">
+                            Odustani
+                        </Link>
                     </Col>
-                    <Col xs={6} sm={6} md={9} lg={6} xl={6} xxl={6}>
-                    <Button variant="primary" type="submit" className="siroko">
-                        Dodaj novi predmet
-                    </Button>
+                    <Col xs={6}>
+                        <Button variant="primary" type="submit" className="siroko">
+                            Dodaj novi predmet
+                        </Button>
                     </Col>
                 </Row>
-
-
-        </Form>
-
+            </Form>
         </>
-
-    )
-
-
+    );
 }

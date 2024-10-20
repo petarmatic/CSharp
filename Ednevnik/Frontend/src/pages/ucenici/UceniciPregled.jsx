@@ -48,49 +48,37 @@ async function brisanjeUcenika(id) {
     dohvatiUcenike();
 }
 
-
-
-  return (
-    <>
-      <Link to={RouteNames.UCENIK_DODAJ}
-        className="btn btn-success ">Dodaj novog učenika</Link>
-      <Table striped bordered hover responsive>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Ime</th>
-            <th>Prezime</th>
-            <th>OIB</th>
-            <th>Školska godina</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ucenici&&ucenici.map((ucenik,index)=>
-            <tr key={index}>
-              <td>{ucenik.id}</td> 
-              <td>{ucenik.ime}</td>
-              <td>{ucenik.prezime}</td>
-              <td>{ucenik.oib}</td>
-              <td>{ucenik.skolskaGodina}</td>
-
-              <Button
-              variant="danger"
-              onClick={()=>obrisi(ucenik.id)}
-              >Obriši </Button>
+return (
+  <>
+    <Link to={RouteNames.UCENIK_DODAJ} className="btn btn-success">Dodaj novog učenika</Link>
+    <Table striped bordered hover responsive>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Ime</th>
+          <th>Prezime</th>
+          <th>OIB</th>
+          <th>Školska godina</th>
+          <th>Akcije</th>
+        </tr>
+      </thead>
+      <tbody>
+        {ucenici && ucenici.map((ucenik, index) => (
+          <tr key={index}>
+            <td>{ucenik.id}</td>
+            <td>{ucenik.ime}</td>
+            <td>{ucenik.prezime}</td>
+            <td>{ucenik.oib}</td>
+            <td>{ucenik.skolskaGodina}</td>
+            <td>
+              <Button variant="danger" onClick={() => obrisi(ucenik.id)}>Obriši</Button>
               &nbsp;&nbsp;&nbsp;
-              <Button
-              onClick={()=>navigate(`¨/ucenici/${ucenik.id}`)}
-              >
-                Promjena
-              </Button>
-
-
-            </tr>
-          )}
-        </tbody>
-        
-      </Table>
-      
-    </>
-  )
+              <Button onClick={() => navigate(`/ucenici/${ucenik.id}`)}>Promjena</Button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+  </>
+);
 }
