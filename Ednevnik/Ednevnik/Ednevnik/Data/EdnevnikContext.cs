@@ -12,6 +12,7 @@ namespace Ednevnik.Data
 
         public DbSet<Ucenik> Ucenici {  get; set; }
         public DbSet<Predmet> Predmeti { get; set; }
+        public DbSet<Obavijest> Obavijesti { get;set; }
 
     }
     
