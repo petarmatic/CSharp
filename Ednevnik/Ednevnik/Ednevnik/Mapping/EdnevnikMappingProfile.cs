@@ -10,6 +10,8 @@ namespace Ednevnik.Mapping
         {
             CreateMap<Predmet, PredmetDTORead>();
             CreateMap<PredmetDTOInsertUpdate, Predmet>();
+
+            
         }
     }
 }

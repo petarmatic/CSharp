@@ -4,6 +4,7 @@ namespace Ednevnik.Models
 {
     public class Ocjena:Entitet
     {
+        [ForeignKey("ucenik")]
         public int? UcenikId { get; set; }
         [ForeignKey("predmet")]
         public int? PredmetId { get; set; } 
