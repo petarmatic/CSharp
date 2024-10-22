@@ -5,6 +5,6 @@
         int Id,
         string? Tekst, 
         DateTime? Datum, 
-        int? Predmet
+        string? PredmetNaziv
     );
 }

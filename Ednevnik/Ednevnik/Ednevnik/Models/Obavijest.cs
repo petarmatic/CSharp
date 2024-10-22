@@ -7,9 +7,8 @@ namespace Ednevnik.Models
         public string? Tekst { get; set; } 
         public DateTime? Datum { get; set; }
         [ForeignKey("predmet")]
-        public int? PredmetId { get; set; }
+        public Predmet? Predmet { get; set; }
 
-        public ICollection<Predmet>? Predmeti { get; set; }
 
     }
 }

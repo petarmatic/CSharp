@@ -11,7 +11,13 @@ namespace Ednevnik.Mapping
             CreateMap<Predmet, PredmetDTORead>();
             CreateMap<PredmetDTOInsertUpdate, Predmet>();
 
-            
+
+            CreateMap<Obavijest, ObavijestDTORead>().ForCtorParam(
+                   "PredmetNaziv",
+                   opt => opt.MapFrom(src => src.Predmet.Naziv)
+               );
+
+
         }
     }
 }
