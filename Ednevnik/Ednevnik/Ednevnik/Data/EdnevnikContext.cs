@@ -12,12 +12,15 @@ namespace Ednevnik.Data
         public DbSet<Ucenik> Ucenici { get; set; }
         public DbSet<Predmet> Predmeti { get; set; }
         public DbSet<Obavijest> Obavijesti { get; set; }
+        public DbSet<Ocjena> Ocjene {  get; set; }
 
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
-            modelBuilder.Entity<Obavijest>().HasOne<Predmet>(o => o.Predmet); 
+            modelBuilder.Entity<Obavijest>().HasOne<Predmet>(o => o.Predmet);
+            modelBuilder.Entity<Ocjena>().HasOne<Ucenik>(oc => oc.Ucenik);
+            modelBuilder.Entity<Ocjena>().HasOne<Predmet>(oc => oc.Predmet);
 
             /*
             modelBuilder.Entity<Obavijest>()

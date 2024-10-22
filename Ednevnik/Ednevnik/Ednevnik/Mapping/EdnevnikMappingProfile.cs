@@ -18,6 +18,12 @@ namespace Ednevnik.Mapping
                );
 
 
+            CreateMap<Ocjena, OcjenaDTORead>().ForCtorParam(
+                "PredmetNaziv",
+                opt => opt.MapFrom(src => src.Predmet.Naziv)
+                );
+
+
         }
     }
 }
