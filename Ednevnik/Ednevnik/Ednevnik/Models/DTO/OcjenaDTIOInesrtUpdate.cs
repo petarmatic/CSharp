@@ -5,10 +5,10 @@ namespace Ednevnik.Models.DTO
     public class OcjenaDTIOInesrtUpdate
     (
         [Required(ErrorMessage = "Tekst obavezno")]
-        string? UcenikIme,
+        string? Ucenik,
 
         [Required(ErrorMessage = "Predmet obavezno")]
-        string? PredmetNaziv,
+        string? Predmet,
 
         [Required(ErrorMessage = "Ocjena obavezno")]
         string? VrijednostOcjene,

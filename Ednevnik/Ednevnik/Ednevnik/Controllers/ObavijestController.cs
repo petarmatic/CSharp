@@ -138,7 +138,7 @@ namespace Ednevnik.Controllers
                 }
 
                 e = _mapper.Map(dto, e);
-                e.Predmet =p;
+                e.Predmet = p;
                 _context.Obavijesti.Update(e);
                 _context.SaveChanges();
 
@@ -188,19 +188,5 @@ namespace Ednevnik.Controllers
         }
 
 
-    } 
+    }
 }
-            
-
-        
-
-
-
-            
-    
-
-
-
-    
-    
-

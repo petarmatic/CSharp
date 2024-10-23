@@ -12,33 +12,27 @@ namespace Ednevnik.Data
         public DbSet<Ucenik> Ucenici { get; set; }
         public DbSet<Predmet> Predmeti { get; set; }
         public DbSet<Obavijest> Obavijesti { get; set; }
-        public DbSet<Ocjena> Ocjene {  get; set; }
+        public DbSet<Ocjena> Ocjene { get; set; }
 
-        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             
-            modelBuilder.Entity<Obavijest>().HasOne<Predmet>(o => o.Predmet);
-            modelBuilder.Entity<Ocjena>().HasOne<Ucenik>(oc => oc.Ucenik);
-            modelBuilder.Entity<Ocjena>().HasOne<Predmet>(oc => oc.Predmet);
-
-            /*
             modelBuilder.Entity<Obavijest>()
-                .HasMany(o => o.Predmeti)
+                .HasOne(o => o.Predmet)
                 .WithMany(p => p.Obavijesti)
-                .UsingEntity<Dictionary<string, object>>("ObavijestPredmet", 
-                    j => j
-                        .HasOne<Predmet>()
-                        .WithMany()
-                        .HasForeignKey("PredmetId"), 
-                    j => j
-                        .HasOne<Obavijest>()
-                        .WithMany()
-                        .HasForeignKey("ObavijestId"), 
-                    j => j.ToTable("ObavijestPredmet") 
-                );
-            */
+                .HasForeignKey(o => o.PredmetId);
+
+            
+            modelBuilder.Entity<Ocjena>()
+                .HasOne(oc => oc.Ucenik)
+                .WithMany(u => u.Ocjene)
+                .HasForeignKey(oc => oc.UcenikId);
+
+            
+            modelBuilder.Entity<Ocjena>()
+                .HasOne(oc => oc.Predmet)
+                .WithMany(p => p.Ocjene)
+                .HasForeignKey(oc => oc.PredmetId);
         }
-        
     }
 }
