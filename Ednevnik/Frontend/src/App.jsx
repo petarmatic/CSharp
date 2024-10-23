@@ -4,7 +4,7 @@ import './App.css';
 import NavBarEdnevnik from './components/NavBarEdnevnik';
 import { Route, Routes } from 'react-router-dom';
 import { RouteNames } from './constants';
-import Pocetna from './pages/ucenici/Pocetna';
+import Pocetna from './pages/Pocetna';
 import UceniciPregled from './pages/ucenici/UceniciPregled';
 import UceniciDodaj from './pages/ucenici/UceniciDodaj'; 
 import UceniciPromjena from './pages/ucenici/UceniciPromjena';
@@ -27,6 +27,9 @@ function App() {
           <Route path={RouteNames.PREDMET_PREGLED} element={<PredmetiPregled />} />
           <Route path={RouteNames.PREDMET_DODAJ} element={<PredmetiDodaj />} />
           <Route path={RouteNames.PREDMET_PROMJENA} element={<PredmetiPromjena />} />
+
+          
+    
         </Routes>
         
         <hr />

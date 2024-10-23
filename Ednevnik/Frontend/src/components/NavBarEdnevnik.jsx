@@ -23,11 +23,20 @@ export default function NavBarEdnevnik() {
               </Nav.Link>
               <NavDropdown title="Učenici" id="basic-nav-dropdown">
                 <NavDropdown.Item onClick={() => navigate(RouteNames.UCENIK_PREGLED)}>
-                  Pregled učenika
+                  Učenici
                 </NavDropdown.Item>
                 <NavDropdown.Item onClick={()=>navigate(RouteNames.PREDMET_PREGLED)}>
                   Predmeti
                 </NavDropdown.Item>
+
+                <NavDropdown.Item onClick={()=>navigate(RouteNames.OBAVIJEST_PREGLED)}>
+                  Obavijesti
+                </NavDropdown.Item>
+
+                <NavDropdown.Item onClick={()=>navigate(RouteNames.OCJENA_PREGLED)}>
+                  Ocjene
+                </NavDropdown.Item>
+
               </NavDropdown>
             </Nav>
           </Navbar.Collapse>

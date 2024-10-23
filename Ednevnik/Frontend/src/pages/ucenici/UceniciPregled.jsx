@@ -12,10 +12,6 @@ export default function UceniciPregled() {
 
   const[ucenici,setUcenici]=useState();
 
- 
-
-
-
 
 
 async function dohvatiUcenike() {

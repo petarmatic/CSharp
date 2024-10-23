@@ -8,7 +8,17 @@ export const RouteNames = {
 
     PREDMET_PREGLED:'/predmeti',
     PREDMET_DODAJ:'/predmeti/dodaj',
-    PREDMET_PROMJENA:'/predmeti/:id'
+    PREDMET_PROMJENA:'/predmeti/:id',
+
+
+    OBAVIJEST_PREGLED:'/obavijesti',
+    OBAVIJEST_DODAJ:'/obavijesti/dodaj',
+    OBAVIJEST_PROMJENA:'/obavijesti/:id',
+
+
+    OCJENA_PREGLED:'/ocjene',
+    OCJENA_DODAJ:'/ocjene/dodaj',
+    OCJENA_PROMJENA:'/ocjene/:id'
 
 }
 
