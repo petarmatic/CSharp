@@ -16,23 +16,10 @@ namespace Ednevnik.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+
             modelBuilder.Entity<Obavijest>()
-                .HasOne(o => o.Predmet)
-                .WithMany(p => p.Obavijesti)
-                .HasForeignKey(o => o.PredmetId);
+                .HasOne(o => o.Predmet);
 
-            
-            modelBuilder.Entity<Ocjena>()
-                .HasOne(oc => oc.Ucenik)
-                .WithMany(u => u.Ocjene)
-                .HasForeignKey(oc => oc.UcenikId);
-
-            
-            modelBuilder.Entity<Ocjena>()
-                .HasOne(oc => oc.Predmet)
-                .WithMany(p => p.Ocjene)
-                .HasForeignKey(oc => oc.PredmetId);
         }
     }
 }

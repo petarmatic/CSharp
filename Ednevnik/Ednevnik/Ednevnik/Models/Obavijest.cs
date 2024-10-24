@@ -6,7 +6,7 @@ namespace Ednevnik.Models
     {
         public string? Tekst { get; set; } 
         public DateTime? Datum { get; set; }
-        [ForeignKey("predmet")]
+        [ForeignKey("predmet_id")]
         public Predmet? Predmet { get; set; }
 
 

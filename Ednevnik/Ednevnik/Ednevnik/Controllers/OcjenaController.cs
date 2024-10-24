@@ -31,6 +31,7 @@ namespace Ednevnik.Controllers
             }
         }
 
+        /*
         [HttpGet]
         [Route("{id:int}")]
         public ActionResult<OcjenaDTOInsertUpdate> GetById(int id)
@@ -92,6 +93,6 @@ namespace Ednevnik.Controllers
             {
                 return BadRequest(new { poruka = ex.Message });
             }
-        }
+        } */
     }
 }

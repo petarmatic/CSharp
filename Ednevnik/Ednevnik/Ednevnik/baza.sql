@@ -9,7 +9,7 @@ create table ucenici(
 	skolska_godina varchar(255) not null
 );
 
-create table obavijest(
+create table obavijesti(
 	id int not null primary key identity(1,1),
 	tekst text,
 	datum date,

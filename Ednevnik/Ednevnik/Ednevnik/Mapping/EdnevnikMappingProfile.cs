@@ -12,7 +12,7 @@ namespace Ednevnik.Mapping
             CreateMap<PredmetDTOInsertUpdate, Predmet>();
             CreateMap<ObavijestDTOInsertUpdate, Obavijest>();
             CreateMap<Ocjena,OcjenaDTORead>();
-            CreateMap<OcjenaDTOInsertUpdate, Ocjena>();
+          //  CreateMap<OcjenaDTOInsertUpdate, Ocjena>();
 
             CreateMap<Obavijest, ObavijestDTORead>().ForCtorParam(
                    "PredmetNaziv",
