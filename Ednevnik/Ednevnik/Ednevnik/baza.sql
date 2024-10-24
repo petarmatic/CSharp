@@ -1,5 +1,15 @@
 ﻿
-
+SELECT name, collation_name FROM sys.databases;
+GO
+ALTER DATABASE db_aad7dc_ednevnik SET SINGLE_USER WITH
+ROLLBACK IMMEDIATE;
+GO
+ALTER DATABASE db_aad7dc_ednevnik COLLATE Croatian_CI_AS;
+GO
+ALTER DATABASE db_aad7dc_ednevnik SET MULTI_USER;
+GO
+SELECT name, collation_name FROM sys.databases;
+GO
 
 create table ucenici(
 	id int not null primary key identity(1,1),

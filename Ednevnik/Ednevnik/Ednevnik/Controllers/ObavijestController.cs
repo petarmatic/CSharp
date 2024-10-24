@@ -27,12 +27,14 @@ namespace Ednevnik.Controllers
             try
             {
 
+                /*
                 List<Obavijest> lista = _context.Obavijesti.Include(o => o.Predmet).ToList();
                 foreach(var o in lista)
                 {
                     Console.WriteLine(o.Id);
                 }
-                return Ok(_mapper.Map<List<ObavijestDTORead>>(lista));
+                */
+                return Ok(_mapper.Map<List<ObavijestDTORead>>(_context.Obavijesti.Include(o => o.Predmet)));
             }
             catch (Exception ex)
             {

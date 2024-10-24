@@ -30,8 +30,8 @@ namespace Ednevnik.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
         }
-
         /*
+        
         [HttpGet]
         [Route("{id:int}")]
         public ActionResult<OcjenaDTOInsertUpdate> GetById(int id)
@@ -58,9 +58,10 @@ namespace Ednevnik.Controllers
 
             return Ok(_mapper.Map<OcjenaDTORead>(ocjena));
         }
-
+        */
+        /*
         [HttpPost]
-        public IActionResult Post(OcjenaDTOInsertUpdate dto)
+        public IActionResult Post(OcjenaDTOInesrtUpdate dto)
         {
             if (!ModelState.IsValid)
             {
@@ -92,7 +93,7 @@ namespace Ednevnik.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new { poruka = ex.Message });
-            }
-        } */
+            } */
+        
     }
 }
