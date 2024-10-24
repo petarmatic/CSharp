@@ -114,14 +114,14 @@ namespace Ednevnik.Controllers
             {
                 return BadRequest(new { poruka = ModelState });
             }
+             
             try
             {
                 Obavijest? e;
                 try
                 {
-                    e = _context.Obavijesti.Include(o => o.Predmet).FirstOrDefault(x => x.Id == id);
+                    e = _context.Obavijesti.Include(g => g.Predmet).FirstOrDefault(x => x.Id == id);
                 }
-
                 catch (Exception ex)
                 {
                     return BadRequest(new { poruka = ex.Message });
@@ -131,24 +131,24 @@ namespace Ednevnik.Controllers
                     return NotFound(new { poruka = "Obavijest ne postoji u bazi" });
                 }
 
-                Predmet p;
+                Predmet? es;
                 try
                 {
-                    p = _context.Predmeti.Find(dto.PredmetId);
+                    es = _context.Predmeti.Find(dto.PredmetId);
                 }
                 catch (Exception ex)
                 {
                     return BadRequest(new { poruka = ex.Message });
                 }
-                if (p == null)
+                if (es == null)
                 {
                     return NotFound(new { poruka = "Predmet na obavijesti ne postoji u bazi" });
                 }
 
-                e = _mapper.Map(dto, e);
-                e.Predmet = p;
-                _context.Obavijesti.Update(e);
-                _context.SaveChanges();
+                    e = _mapper.Map(dto, e);
+                    e.Predmet = es;
+                    _context.Obavijesti.Update(e);
+                    _context.SaveChanges();
 
                 return Ok(new { poruka = "Uspješno promjenjeno" });
             }
@@ -157,8 +157,10 @@ namespace Ednevnik.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
 
+            
 
         }
+
 
 
         [HttpDelete]
