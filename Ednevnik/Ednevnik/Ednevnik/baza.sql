@@ -34,7 +34,7 @@ create table ocjene(
 	datum datetime
 );
 
-alter table obavijest add foreign key(predmet_id) references predmeti(id);
+alter table obavijesti add foreign key(predmet_id) references predmeti(id);
 alter table ucenik_predmeti add foreign key( ucenik_id) references ucenici(id);
 alter table ucenik_predmeti add foreign key(predmeti_id) references predmeti(id);
 alter table ocjene add foreign key(ucenik_id) references ucenici(id);
@@ -48,9 +48,9 @@ insert into predmeti(naziv) values('Matematika');
 insert into predmeti(naziv) values('Biologija');
 insert into predmeti(naziv) values('Kemija');
 
-insert into obavijest(tekst,datum,predmet_id) values ('Nema ga na nastavi', '2024-12-6 14:53',1);
-insert into obavijest(tekst,datum,predmet_id) values ('Pobjegao', '2024-9-8 17:52',2);
-insert into obavijest(tekst,datum,predmet_id) values ('Pravi nered', '2024-8-7 09:04',3);
+insert into obavijesti(tekst,datum,predmet_id) values ('Nema ga na nastavi', '2024-12-6 14:53',1);
+insert into obavijesti(tekst,datum,predmet_id) values ('Pobjegao', '2024-9-8 17:52',2);
+insert into obavijesti(tekst,datum,predmet_id) values ('Pravi nered', '2024-8-7 09:04',3);
 
 insert into ucenik_predmeti(ucenik_id,predmeti_id) values(1,2);
 insert into ucenik_predmeti(ucenik_id,predmeti_id) values(2,1);
@@ -63,6 +63,6 @@ insert into ocjene(ucenik_id,predmet_id,VrijednostOcjena,datum) values(1,2,'5','
 
 select *from ucenici;
 select*from predmeti;
-select*from obavijest;
+select*from obavijesti;
 select*from ucenik_predmeti;
 select*from ocjene;
