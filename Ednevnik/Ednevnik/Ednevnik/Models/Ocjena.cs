@@ -9,6 +9,9 @@ namespace Ednevnik.Models
         [ForeignKey("predmet")]
         public Predmet? Predmet { get; set; } 
         public string? VrijednostOcjene { get; set; } 
-        public DateTime? Datum { get; set; } 
+        public DateTime? Datum { get; set; }
+
+
+        
     }
 }

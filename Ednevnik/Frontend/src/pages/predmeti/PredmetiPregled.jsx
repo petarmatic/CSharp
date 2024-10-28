@@ -3,14 +3,13 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; 
 import { RouteNames } from "../../constants";
 import PredmetService from "../../services/PredmetService";
-//import useLoading from "../../hooks/useLoading";
+
 
 export default function PredmetiPregled() {
 
     const [predmeti, setPredmeti] = useState([]);
     const navigate = useNavigate();
-  //  const { showLoading, hideLoading } = useLoading();
-
+  
     async function dohvatiPredmete() {
         const odgovor = await PredmetService.get();
         if (odgovor.greska) {

@@ -20,6 +20,19 @@ namespace Ednevnik.Data
             modelBuilder.Entity<Obavijest>()
                 .HasOne(o => o.Predmet);
 
+
+            modelBuilder.Entity<Ocjena>()
+               .HasOne(o => o.Predmet);
+
+
+
+            modelBuilder.Entity<Ocjena>()
+                .HasOne(o => o.Ucenik);
+               
+               
+
         }
+
+        
     }
 }

@@ -20,9 +20,17 @@ namespace Ednevnik.Controllers
             {
                 return BadRequest(new { poruka = ModelState });
             }
+
             try
             {
-                var ocjene = _context.Ocjene.Include(o => o.Predmet).ToList();
+                var ocjene = _context.Ocjene.Include(o => o.Predmet).Include(o => o.Ucenik).ToList();
+
+                // Logiranje ID-eva ocjena (opcionalno)
+                foreach (var o in ocjene)
+                {
+                    Console.WriteLine(o.Id);
+                }
+
                 return Ok(_mapper.Map<List<OcjenaDTORead>>(ocjene));
             }
             catch (Exception ex)
@@ -30,70 +38,66 @@ namespace Ednevnik.Controllers
                 return BadRequest(new { poruka = ex.Message });
             }
         }
-        /*
-        
-        [HttpGet]
-        [Route("{id:int}")]
-        public ActionResult<OcjenaDTOInsertUpdate> GetById(int id)
+
+        [HttpGet("{id:int}")]
+        public ActionResult<OcjenaDTORead> GetById(int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(new { poruka = ModelState });
             }
 
-            Ocjena? ocjena;
             try
             {
-                ocjena = _context.Ocjene.Include(o => o.Predmet).FirstOrDefault(o => o.Id == id);
+                var ocjena = _context.Ocjene.Include(o => o.Predmet).Include(o => o.Ucenik).FirstOrDefault(o => o.Id == id);
+
+                if (ocjena == null)
+                {
+                    return NotFound(new { poruka = "Ocjena ne postoji u bazi" });
+                }
+
+                return Ok(_mapper.Map<OcjenaDTORead>(ocjena));
             }
             catch (Exception ex)
             {
                 return BadRequest(new { poruka = ex.Message });
             }
-
-            if (ocjena == null)
-            {
-                return NotFound(new { poruka = "Ocjena ne postoji u bazi" });
-            }
-
-            return Ok(_mapper.Map<OcjenaDTORead>(ocjena));
         }
-        */
-        /*
+
         [HttpPost]
-        public IActionResult Post(OcjenaDTOInesrtUpdate dto)
+        public IActionResult Post(OcjenaDTOInsertUpdate dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(new { poruka = ModelState });
             }
 
-            Predmet? predmet;
             try
             {
-                predmet = _context.Predmeti.Find(dto.PredmetId);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { poruka = ex.Message });
-            }
+                // Provjerite postoje li predmet i učenik
+                var predmet = _context.Predmeti.Find(dto.PredmetId);
+                var ucenik = _context.Ucenici.Find(dto.UcenikId);
 
-            if (predmet == null)
-            {
-                return NotFound(new { poruka = "Predmet ne postoji u bazi" });
-            }
+                if (predmet == null)
+                {
+                    return NotFound(new { poruka = "Predmet ne postoji u bazi" });
+                }
 
-            try
-            {
+                if (ucenik == null)
+                {
+                    return NotFound(new { poruka = "Učenik ne postoji u bazi" });
+                }
+
                 var ocjena = _mapper.Map<Ocjena>(dto);
                 _context.Ocjene.Add(ocjena);
                 _context.SaveChanges();
+
                 return StatusCode(StatusCodes.Status201Created, _mapper.Map<OcjenaDTORead>(ocjena));
             }
             catch (Exception ex)
             {
                 return BadRequest(new { poruka = ex.Message });
-            } */
-        
+            }
+        }
     }
 }

@@ -11,6 +11,9 @@ import UceniciPromjena from './pages/ucenici/UceniciPromjena';
 import PredmetiPregled from './pages/predmeti/PredmetiPregled';
 import PredmetiDodaj from './pages/predmeti/PredmetiDodaj';
 import PredmetiPromjena from './pages/predmeti/PredmetiPromjena';
+import ObavijestiPregled from './pages/obavijesti/ObavijestiPregled';
+import ObavijestiDodaj from './pages/obavijesti/ObavijestiDodaj';
+import ObavijestiPromjena from './pages/obavijesti/ObavijestiPromjena';
 function App() {
   return (
     <>
@@ -28,6 +31,9 @@ function App() {
           <Route path={RouteNames.PREDMET_DODAJ} element={<PredmetiDodaj />} />
           <Route path={RouteNames.PREDMET_PROMJENA} element={<PredmetiPromjena />} />
 
+          <Route path={RouteNames.OBAVIJEST_PREGLED} element={<ObavijestiPregled />} />
+          <Route path={RouteNames.OBAVIJEST_DODAJ} element={<ObavijestiDodaj />} />
+          <Route path={RouteNames.OBAVIJEST_PROMJENA} element={<ObavijestiPromjena />} />
           
     
         </Routes>
