@@ -14,9 +14,17 @@ import PredmetiPromjena from './pages/predmeti/PredmetiPromjena';
 import ObavijestiPregled from './pages/obavijesti/ObavijestiPregled';
 import ObavijestiDodaj from './pages/obavijesti/ObavijestiDodaj';
 import ObavijestiPromjena from './pages/obavijesti/ObavijestiPromjena';
+
+
+import useError from "./hooks/useError"
+import ErrorModal from "./components/ErrorModal"
+
 function App() {
+
+  const { errors, prikaziErrorModal, sakrijError } = useError();
   return (
     <>
+    <ErrorModal show={prikaziErrorModal} errors={errors} onHide={sakrijError} />
       <Container>
         <NavBarEdnevnik />
         

@@ -7,7 +7,7 @@ namespace Ednevnik.Models.DTO
         int Id,
         string? UcenikIme,
         string? PredmetNaziv,
-        string? VrijednostOcjene,
+        string? VrijednostOcjena,
         DateTime? Datum
 
 

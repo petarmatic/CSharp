@@ -9,6 +9,9 @@ namespace Ednevnik.Models
         public string? Prezime { get; set; } 
         public string? Oib { get; set; }
         [Column("skolska_godina")]
-        public string? SkolskaGodina { get; set; } 
+        public string? SkolskaGodina { get; set; }
+
+        public ICollection<Ocjena>? Ocjene { get; set; } = [];
+
     }
 }

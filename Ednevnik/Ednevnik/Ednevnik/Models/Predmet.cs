@@ -5,5 +5,6 @@
         public string? Naziv { get; set; }
 
         public ICollection<Obavijest>? Obavijesti { get; set; } = [];
+        public ICollection<Ocjena>? Ocjene { get; set; } = [];
     }
 }

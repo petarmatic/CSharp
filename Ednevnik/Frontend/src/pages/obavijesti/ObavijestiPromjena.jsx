@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import Service from '../../services/ObavijestService';
 import { RouteNames } from '../../constants';
 import PredmetService from '../../services/PredmetService';
+import useError from '../../hooks/useError';
+
+
 
 export default function ObavijestiPromjena() {
   const navigate = useNavigate();
@@ -12,6 +15,7 @@ export default function ObavijestiPromjena() {
   const [predmeti, setPredmeti] = useState([]);
   const [predmetId, setPredmetId] = useState(0);
   const [obavijest, setObavijest] = useState({});
+  const { prikaziError } = useError();
 
   async function dohvatiPredmete() {
     const odgovor = await PredmetService.get();
@@ -98,7 +102,7 @@ export default function ObavijestiPromjena() {
                 onChange={(e) => setPredmetId(e.target.value)}
               >
                 {predmeti.map((predmet) => (
-                  <option key={predmet.sifra} value={predmet.sifra}>
+                  <option key={predmet.id} value={predmet.id}>
                     {predmet.naziv}
                   </option>
                 ))}
@@ -114,7 +118,7 @@ export default function ObavijestiPromjena() {
               </Col>
               <Col xs={6} sm={6} md={9} lg={6}>
                 <Button variant="primary" type="submit" className="siroko">
-                  Promijeni obavijest
+                  Promjeni obavijest
                 </Button>
               </Col>
             </Row>

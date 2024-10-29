@@ -3,11 +3,19 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 
+import { ErrorProvider } from './components/ErrorContext.jsx'
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <App/>
+     
+        <ErrorProvider>
+          
+            <App />
+          
+        </ErrorProvider>
+      
     </BrowserRouter>
   </StrictMode>,
 )
