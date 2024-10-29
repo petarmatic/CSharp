@@ -30,11 +30,14 @@ namespace Ednevnik.Controllers
                 foreach (var o in ocjene)
                 {
                     Console.WriteLine(o.Id);
-                } */
-
+                } 
+                */
+                /*
                 return Ok(_mapper.Map<List<OcjenaDTORead>>(
-                     _context.Ocjene.Include(o => o.Predmet).Include(o => o.Ucenik).ToList()
+                     _context.Ocjene.Include(o => o.Predmet).Include(o => o.Ucenik)
                         ));
+                */
+                return Ok(_mapper.Map<List<OcjenaDTORead>>(_context.Ocjene.Include(o => o.Predmet).Include(o => o.Ucenik)));
             }
             catch (Exception ex)
             {

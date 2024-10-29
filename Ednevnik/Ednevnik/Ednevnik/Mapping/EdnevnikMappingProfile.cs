@@ -21,6 +21,11 @@ namespace Ednevnik.Mapping
                 "PredmetNaziv",
                 opt => opt.MapFrom(src => src.Predmet.Naziv)
             );
+
+            CreateMap<Obavijest, ObavijestDTOInsertUpdate>().ForCtorParam(
+                "PredmetId",
+                opt => opt.MapFrom(src => src.Predmet.Id)
+            );
         }
     }
 }

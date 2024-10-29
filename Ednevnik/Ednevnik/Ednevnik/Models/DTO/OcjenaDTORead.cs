@@ -2,7 +2,7 @@
 
 namespace Ednevnik.Models.DTO
 {
-    public class OcjenaDTORead
+    public record OcjenaDTORead
     (
         int Id,
         string? UcenikIme,
