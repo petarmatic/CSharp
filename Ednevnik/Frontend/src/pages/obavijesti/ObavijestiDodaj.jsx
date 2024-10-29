@@ -12,7 +12,7 @@ export default function ObavijestiDodaj() {
 
     async function dohvatiPredmete() {
         const odgovor = await PredmetService.get();
-        console.log("Dohvaćeni predmeti:", odgovor.poruka); // Provjeravamo podatke
+        console.log("Dohvaćeni predmeti:", odgovor.poruka); 
         setPredmeti(odgovor.poruka);
         setPredmetId(odgovor.poruka[0]?.id || 0);
     }
@@ -22,9 +22,9 @@ export default function ObavijestiDodaj() {
     }, []);
 
     async function dodaj(obavijest) {
-        console.log("Podaci za dodavanje:", obavijest); // Provjeravamo podatke prije slanja
+        console.log("Podaci za dodavanje:", obavijest); 
         const odgovor = await Service.dodaj(obavijest);
-        console.log("Odgovor od servisa:", odgovor); // Provjeravamo odgovor
+        console.log("Odgovor od servisa:", odgovor); 
         if (odgovor.greska) {
             alert(odgovor.poruka);
             return;
@@ -40,7 +40,7 @@ export default function ObavijestiDodaj() {
             datum: podaci.get('datum'),
             predmetId: parseInt(predmetId),
         };
-        console.log("Podaci iz forme:", obavijest); // Provjeravamo podatke iz forme
+        console.log("Podaci iz forme:", obavijest); 
         dodaj(obavijest);
     }
 
