@@ -9,9 +9,9 @@ namespace Ednevnik.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class OcjenaController : EdnevnikController
+    public class OcjenaController(EdnevnikContext context, IMapper mapper) : EdnevnikController(context, mapper)
     {
-        public OcjenaController(EdnevnikContext context, IMapper mapper) : base(context, mapper) { }
+        
 
         [HttpGet]
         public ActionResult<List<OcjenaDTORead>> Get()

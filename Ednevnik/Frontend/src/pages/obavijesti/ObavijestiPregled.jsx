@@ -53,7 +53,7 @@ export default function ObavijestiPregled() {
                         <tr key={index}>
                             <td>{entitet.tekst}</td>
                             <td>{entitet.datum}</td>
-                            <td>{entitet.predmet}</td>
+                            <td>{entitet.predmetNaziv}</td>
                             <td className="sredina">
                                 <Button
                                     variant='primary'
