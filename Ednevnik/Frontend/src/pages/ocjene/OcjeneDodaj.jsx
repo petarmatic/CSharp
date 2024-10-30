@@ -57,13 +57,13 @@ export default function OcjeneDodaj() {
         const ocjena = {
             ucenikId: parseInt(ucenikId),
             predmetId: parseInt(predmetId),
-            vrijednostOcjene: podaci.get('VrijednostOcjena'),
+            vrijednostOcjene: parseInt(podaci.get('VrijednostOcjena')), 
             datum: podaci.get('datum'),
         };
         console.log("Podaci iz forme:", ocjena); 
         dodaj(ocjena);
     }
-
+    
     return (
         <Container>
             <h2>Dodavanje nove ocjene</h2>
@@ -104,7 +104,7 @@ export default function OcjeneDodaj() {
                 <hr />
                 <Row>
                     <Col xs={6}>
-                        <Link to={RouteNames.OBAVIJEST_PREGLED} className="btn btn-danger siroko">
+                        <Link to={RouteNames.OCJENA_PREGLED} className="btn btn-danger siroko">
                             Odustani
                         </Link>
                     </Col>
