@@ -4,6 +4,7 @@ using Ednevnik.Models;
 using Ednevnik.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 
 namespace Ednevnik.Controllers
 {
@@ -71,43 +72,75 @@ namespace Ednevnik.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(OcjenaDTOInsertUpdate dto)
+        public IActionResult Post([FromBody] OcjenaDTOInsertUpdate dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(new { poruka = ModelState });
             }
 
+            // ovo je za ucenika
+            Ucenik? u;
             try
             {
-                
-                var predmet = _context.Predmeti.Find(dto.PredmetId);
-                var ucenik = _context.Ucenici.Find(dto.UcenikId);
-
-                if (predmet == null)
-                {
-                    return NotFound(new { poruka = "Predmet ne postoji u bazi" });
-                }
-
-                if (ucenik == null)
-                {
-                    return NotFound(new { poruka = "Učenik ne postoji u bazi" });
-                }
-
-                var ocjena = _mapper.Map<Ocjena>(dto);
-                _context.Ocjene.Add(ocjena);
-                _context.SaveChanges();
-
-                return StatusCode(StatusCodes.Status201Created, _mapper.Map<OcjenaDTORead>(ocjena));
+                u = _context.Ucenici.Find(dto.UcenikId);
             }
             catch (Exception ex)
             {
                 return BadRequest(new { poruka = ex.Message });
             }
+            if (u == null)
+            {
+                return NotFound(new { poruka = "Učenik na ocjeni ne postoji u bazi" });
+            }
+            
+
+            // ovo je za predmet
+
+            Predmet? p;
+            try
+            {
+                p = _context.Predmeti.Find(dto.PredmetId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
+            if (u == null)
+            {
+                return NotFound(new { poruka = "Predmet na ocjeni ne postoji u bazi" });
+            }
+            try
+            {
+                
+                var e = _mapper.Map<Ocjena>(dto);
+
+                
+                e.Ucenik = u;
+                e.Predmet = p;
+
+                
+                _context.Ocjene.Add(e);
+                _context.SaveChanges();
+
+                
+                return StatusCode(StatusCodes.Status201Created, _mapper.Map<OcjenaDTORead>(e));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { poruka = ex.Message });
+            }
+
+
+
         }
 
 
-        [HttpPut("{id:int}")]
+
+
+        [HttpPut]
+        [Route("{id:int}")]
+        [Produces("application/json")]
         public IActionResult Put(int id, OcjenaDTOInsertUpdate dto)
         {
             if (!ModelState.IsValid)
@@ -117,14 +150,15 @@ namespace Ednevnik.Controllers
 
             try
             {
+                // Provjeri postoji li ocjena po ID-u
                 var ocjena = _context.Ocjene.Include(o => o.Predmet).Include(o => o.Ucenik).FirstOrDefault(o => o.Id == id);
 
                 if (ocjena == null)
                 {
-                    return NotFound(new { poruka = "Ocjena ne postoji u bazi" });
+                    return NotFound(new { poruka = "Ocjena s navedenim ID-em ne postoji u bazi" });
                 }
 
-                // Provjerite predmet i učenika
+                // Provjera postoji li predmet i učenik s proslijeđenim ID-jevima
                 var predmet = _context.Predmeti.Find(dto.PredmetId);
                 var ucenik = _context.Ucenici.Find(dto.UcenikId);
 
@@ -138,6 +172,7 @@ namespace Ednevnik.Controllers
                     return NotFound(new { poruka = "Učenik ne postoji u bazi" });
                 }
 
+                // Mapiraj novi DTO na postojeću ocjenu
                 ocjena = _mapper.Map(dto, ocjena);
                 ocjena.Predmet = predmet;
                 ocjena.Ucenik = ucenik;
@@ -145,13 +180,14 @@ namespace Ednevnik.Controllers
                 _context.Ocjene.Update(ocjena);
                 _context.SaveChanges();
 
-                return Ok(new { poruka = "Uspješno promjenjeno" });
+                return Ok(new { poruka = "Uspješno promijenjeno" });
             }
             catch (Exception ex)
             {
                 return BadRequest(new { poruka = ex.Message });
             }
         }
+
 
 
         [HttpDelete("{id:int}")]
