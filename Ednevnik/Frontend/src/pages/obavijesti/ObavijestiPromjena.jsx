@@ -1,6 +1,6 @@
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef  } from 'react';
 import Service from '../../services/ObavijestService';
 import { RouteNames } from '../../constants';
 import PredmetService from '../../services/PredmetService';
@@ -11,12 +11,15 @@ import useError from '../../hooks/useError';
 export default function ObavijestiPromjena() {
   const navigate = useNavigate();
   const routeParams = useParams(); 
+  const { prikaziError } = useError();
 
   const [predmeti, setPredmeti] = useState([]);
   const [predmetId, setPredmetId] = useState(0);
-  const [obavijest, setObavijest] = useState({});
-  const { prikaziError } = useError();
 
+  const [obavijest, setObavijest] = useState({});
+  
+  const typeaheadRef = useRef(null);
+  
   async function dohvatiPredmete() {
     const odgovor = await PredmetService.get();
     setPredmeti(odgovor.poruka);
@@ -24,15 +27,14 @@ export default function ObavijestiPromjena() {
 
   async function dohvatiObavijest() {
     const odgovor = await Service.getById(routeParams.id);
-    
     if (odgovor.greska) {
       prikaziError(odgovor.poruka);
       return;
     }
     
-    const obavijest = odgovor.poruka;
+    let obavijest = odgovor.poruka;
     setObavijest(obavijest);
-    setPredmetId(obavijest.predmetiId || 0);
+    setPredmetId(obavijest.predmetiId);
   }
 
   async function dohvatiInicijalnePodatke() {
@@ -44,34 +46,43 @@ export default function ObavijestiPromjena() {
     dohvatiInicijalnePodatke();
   }, []);
 
-  async function promjena(e) {
-    const odgovor = await Service.promjena(routeParams.id, e);
-    
-    if (odgovor.greska) {
-      prikaziError(odgovor.poruka);
-      return;
-    }
-    
-    navigate(RouteNames.OBAVIJESTI_PREGLED);
-  }
+  async function promjena(obavijest) {
+    const odgovor = await Service.promjena(routeParams.id, obavijest);
 
-  function obradiSubmit(e) {
+    if (odgovor.greska) {
+        prikaziError(Array.isArray(odgovor.poruka) ? odgovor.poruka : [odgovor.poruka]);
+        return;
+    }
+
+    alert("Obavijest je uspješno promijenjena!");
+    navigate(RouteNames.OBAVIJESTI_PREGLED);
+}
+
+function obradiSubmit(e) {
     e.preventDefault();
-    
+
     const podaci = new FormData(e.target);
+
+    const noviPodaci = {
+        tekst: podaci.get('tekst'),
+        datum: podaci.get('datum'),
+        predmetId: parseInt(predmetId)
+    };
+
     
-    promjena({
-      tekst: podaci.get('tekst'),
-      datum: podaci.get('datum'),
-      predmetId: parseInt(podaci.get('predmet')) 
-    });
-  }
+    if (JSON.stringify(noviPodaci) === JSON.stringify(obavijest)) {
+        prikaziError(["Nema promjena za spremiti."]); 
+        return;
+    }
+
+    promjena(noviPodaci);
+}
 
   return (
     <>
       <h2>Obavijesti promjena</h2>
       <Row>
-        <Col sm={12} lg={6} md={6}>
+        <Col key='1' sm={12} lg={6} md={6}>
           <Form onSubmit={obradiSubmit}>
             <Form.Group controlId="tekst">
               <Form.Label>Tekst obavijesti</Form.Label>
@@ -89,25 +100,24 @@ export default function ObavijestiPromjena() {
                 type="date" 
                 name="datum" 
                 required 
-                defaultValue={obavijest.datum} 
+                defaultValue={obavijest.datum?.split('T')[0]} 
               />
             </Form.Group>
 
-            <Form.Group controlId="predmet">
-              <Form.Label>Predmet</Form.Label>
-              <Form.Select 
-                name="predmet"
-                required 
-                value={predmetId}
-                onChange={(e) => setPredmetId(e.target.value)}
-              >
-                {predmeti.map((predmet) => (
-                  <option key={predmet.id} value={predmet.id}>
-                    {predmet.naziv}
+            <Form.Group className='mb-3' controlId="predmetId">
+                <Form.Label>Predmet</Form.Label>
+                <Form.Select 
+                    value={predmetId}
+                    onChange={(e) => {setPredmetId(e.target.value)}}
+                >
+                   {predmeti&&predmeti.map((s,index)=>(
+                    <option key={index} value={s.id}>
+                    {s.naziv}
                   </option>
-                ))}
-              </Form.Select>
+                    ))}
+                </Form.Select>
             </Form.Group>
+
 
             <hr />
             <Row>

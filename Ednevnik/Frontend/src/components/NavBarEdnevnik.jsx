@@ -21,7 +21,7 @@ export default function NavBarEdnevnik() {
               <Nav.Link href="https://pmatic-001-site1.ctempurl.com/swagger/index.html">
                 Swagger
               </Nav.Link>
-              <NavDropdown title="Učenici" id="basic-nav-dropdown">
+              <NavDropdown title="Izbornik" id="basic-nav-dropdown">
                 <NavDropdown.Item onClick={() => navigate(RouteNames.UCENIK_PREGLED)}>
                   Učenici
                 </NavDropdown.Item>

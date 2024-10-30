@@ -14,6 +14,8 @@ import PredmetiPromjena from './pages/predmeti/PredmetiPromjena';
 import ObavijestiPregled from './pages/obavijesti/ObavijestiPregled';
 import ObavijestiDodaj from './pages/obavijesti/ObavijestiDodaj';
 import ObavijestiPromjena from './pages/obavijesti/ObavijestiPromjena';
+import OcjenePregled from './pages/ocjene/OcjenePregled';
+import OcjeneDodaj from './pages/ocjene/OcjeneDodaj';
 
 
 import useError from "./hooks/useError"
@@ -42,6 +44,10 @@ function App() {
           <Route path={RouteNames.OBAVIJEST_PREGLED} element={<ObavijestiPregled />} />
           <Route path={RouteNames.OBAVIJEST_DODAJ} element={<ObavijestiDodaj />} />
           <Route path={RouteNames.OBAVIJEST_PROMJENA} element={<ObavijestiPromjena />} />
+
+          <Route path={RouteNames.OCJENA_PREGLED} element={<OcjenePregled />} />
+          <Route path={RouteNames.OCJENA_DODAJ} element={<OcjeneDodaj />} />
+        
           
     
         </Routes>

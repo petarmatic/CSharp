@@ -2,7 +2,7 @@
 
 namespace Ednevnik.Models.DTO
 {
-    public class OcjenaDTOInsertUpdate
+    public record OcjenaDTOInsertUpdate
     {
         [Required(ErrorMessage = "Učenik obavezan")]
         public int UcenikId { get; set; }

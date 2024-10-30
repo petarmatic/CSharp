@@ -40,17 +40,20 @@ async function dodaj(obavijest) {
 
 async function promjena(id, obavijest) {
     return HttpService.put(`/Obavijest/${id}`, obavijest)
-        .then((odgovor) => ({ greska: false, poruka: odgovor.data }))
-        .catch((e) => {
-            let poruke = '';
-            if (e.response && e.response.data.errors) {
-                for (const kljuc in e.response.data.errors) {
-                    poruke += `${kljuc}: ${e.response.data.errors[kljuc][0]}, `;
-                }
-            }
-            return { greska: true, poruka: poruke || 'Obavijest se ne može promijeniti!' };
-        });
-}
+      .then((odgovor) => {
+        console.log("Odgovor iz API-a:", odgovor);
+        return { greska: false, poruka: odgovor.data };
+      })
+      .catch((e) => {
+        let poruke = '';
+        if (e.response && e.response.data.errors) {
+          for (const kljuc in e.response.data.errors) {
+            poruke += `${kljuc}: ${e.response.data.errors[kljuc][0]}, `;
+          }
+        }
+        return { greska: true, poruka: poruke || 'Obavijest se ne može promijeniti!' };
+      });
+  }
 
 async function getPredmeti(id) {
     return HttpService.get(`/Obavijest/Predmeti/${id}`)
