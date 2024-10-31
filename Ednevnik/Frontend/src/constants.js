@@ -18,7 +18,9 @@ export const RouteNames = {
 
     OCJENA_PREGLED:'/ocjene',
     OCJENA_DODAJ:'/ocjene/dodaj',
-    OCJENA_PROMJENA:'/ocjene/:id'
+    OCJENA_PROMJENA:'/ocjene/:id',
+
+    LOGIN: '/login'
 
 }
 

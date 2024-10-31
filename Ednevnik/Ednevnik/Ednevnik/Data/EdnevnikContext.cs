@@ -13,6 +13,8 @@ namespace Ednevnik.Data
         public DbSet<Predmet> Predmeti { get; set; }
         public DbSet<Obavijest> Obavijesti { get; set; }
         public DbSet<Ocjena> Ocjene { get; set; }
+        public DbSet<Operater> Operateri { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

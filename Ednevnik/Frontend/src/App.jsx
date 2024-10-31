@@ -19,20 +19,38 @@ import OcjeneDodaj from './pages/ocjene/OcjeneDodaj';
 import OcjenePromjena from './pages/ocjene/OcjenePromjena';
 
 
+import LoadingSpinner from './components/LoadingSpinner'
+import Login from "./pages/Login"
+import useAuth from "./hooks/useAuth"
 import useError from "./hooks/useError"
 import ErrorModal from "./components/ErrorModal"
 
 function App() {
 
+  const { isLoggedIn } = useAuth();
   const { errors, prikaziErrorModal, sakrijError } = useError();
+
+  function godina(){
+    const pocenta = 2024;
+    const trenutna = new Date().getFullYear();
+    if(pocenta===trenutna){
+      return trenutna;
+    }
+    return pocenta + ' - ' + trenutna;
+  }
+
+  
   return (
     <>
+     <LoadingSpinner />
     <ErrorModal show={prikaziErrorModal} errors={errors} onHide={sakrijError} />
       <Container>
         <NavBarEdnevnik />
         
         <Routes>
           <Route path={RouteNames.HOME} element={<Pocetna />} />
+          {isLoggedIn ? (
+        <>
 
           <Route path={RouteNames.UCENIK_PREGLED} element={<UceniciPregled />} />
           <Route path={RouteNames.UCENIK_DODAJ} element={<UceniciDodaj />} /> 
@@ -50,15 +68,20 @@ function App() {
           <Route path={RouteNames.OCJENA_DODAJ} element={<OcjeneDodaj />} />
           <Route path={RouteNames.OCJENA_PROMJENA} element={<OcjenePromjena />} />
         
-          
+          </>
+        ) : (
+          <>
+            <Route path={RouteNames.LOGIN} element={<Login />} />
+          </>
+        )}
     
         </Routes>
         
         <hr />
-        &copy; Ednevnik
+        Ednevnik &copy; {godina()}
       </Container>
     </>
-  );
+  )
 }
 
 export default App;
