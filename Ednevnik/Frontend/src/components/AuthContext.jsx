@@ -9,20 +9,18 @@ export const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authToken, setAuthToken] = useState('');
+  const [welcomeMessage, setWelcomeMessage] = useState(''); // Nova poruka dobrodošlice
   const { showLoading, hideLoading } = useLoading();
 
   const navigate = useNavigate();
 
-  // useEffect hook na ovaj način koristimo da prilikom prve inicijalizacije
-  // provjerimo postoji li bearer token u local storageu i ako postoji ,
-  // automatski ulogiramo korisnika. Također ako bearer token ne postoji ,
-  // u else dijelu štitimo aplikaciju tako da korisnik ne može pristupiti zaštićenim rutama
   useEffect(() => {
     const token = localStorage.getItem('Bearer');
 
     if (token) {
       setAuthToken(token);
       setIsLoggedIn(true);
+      setWelcomeMessage('Dobrodošli! Izaberite neku opciju iz izbornika.'); // Postavi poruku dobrodošlice
     } else {
       navigate(RouteNames.HOME);
     }
@@ -32,17 +30,20 @@ export function AuthProvider({ children }) {
     showLoading();
     const odgovor = await logInService(userData);
     hideLoading();
+    
     if (!odgovor.greska) {
       localStorage.setItem('Bearer', odgovor.poruka);
       setAuthToken(odgovor.poruka);
       setIsLoggedIn(true);
-      navigate(RouteNames.NADZORNA_PLOCA);
+      setWelcomeMessage('Dobrodošli! Izaberite neku opciju iz izbornika.'); // Postavi poruku nakon prijave
+      return true; // Vraćanje true ako je login uspješan
     } else {
       prikaziError(odgovor.poruka);
       localStorage.setItem('Bearer', '');
       setAuthToken('');
       setIsLoggedIn(false);
-      //navigate(RouteNames.HOME);
+      setWelcomeMessage(''); // Očisti poruku dobrodošlice ako dođe do greške
+      return false; // Vraćanje false ako login nije uspješan
     }
   }
 
@@ -50,6 +51,7 @@ export function AuthProvider({ children }) {
     localStorage.setItem('Bearer', '');
     setAuthToken('');
     setIsLoggedIn(false);
+    setWelcomeMessage(''); // Očisti poruku dobrodošlice
     navigate(RouteNames.HOME);
   }
 
@@ -58,6 +60,7 @@ export function AuthProvider({ children }) {
     authToken,
     login,
     logout,
+    welcomeMessage, // Dodaj poruku dobrodošlice u kontekst
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

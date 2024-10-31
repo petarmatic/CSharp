@@ -1,6 +1,6 @@
 export const RouteNames = {
     
-    HOME:'/',
+    HOME:'/pocetna',
 
     UCENIK_PREGLED:'/ucenici',
     UCENIK_DODAJ:'/ucenici/dodaj',

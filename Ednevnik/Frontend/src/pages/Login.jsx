@@ -1,29 +1,40 @@
+import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import useAuth from '../hooks/useAuth';
+import { RouteNames } from '../constants';
 
 export default function Login() {
   const { login } = useAuth();
+  const navigate = useNavigate(); // Dodajte ovo
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-
     const podaci = new FormData(e.target);
-    login({
+
+    const success = await login({
       email: podaci.get('email'),
       password: podaci.get('lozinka'),
     });
+
+    
+    if (success) {
+      navigate(RouteNames.HOME); 
+    } else {
+      
+      console.error('Login failed');
+    }
   }
 
   return (
     <Container className='mt-4'>
-        <p>
-            email: mail@mail.hr
-        </p>
-        <p>
-            lozinka: lozinka
-        </p>
+      <p>
+        email: mail@mail.hr
+      </p>
+      <p>
+        lozinka: lozinka
+      </p>
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3' controlId='email'>
           <Form.Label>Email</Form.Label>
