@@ -48,6 +48,8 @@ export default function OcjeneDodaj() {
             alert(odgovor.poruka);
             return;
         }
+        
+        alert("Ocjena je uspješno dodana!"); 
         navigate(RouteNames.OCJENE_PREGLED);
     }
 
@@ -57,12 +59,15 @@ export default function OcjeneDodaj() {
         const ocjena = {
             ucenikId: parseInt(ucenikId),
             predmetId: parseInt(predmetId),
-            vrijednostOcjene: parseInt(podaci.get('VrijednostOcjena')), 
+            vrijednostOcjena: podaci.get('vrijednostOcjena').toString(),  // Konvertiramo u string
             datum: podaci.get('datum'),
         };
+    
         console.log("Podaci iz forme:", ocjena); 
         dodaj(ocjena);
     }
+    
+    
     
     return (
         <Container>
@@ -91,9 +96,9 @@ export default function OcjeneDodaj() {
                     </Form.Select>
                 </Form.Group>
 
-                <Form.Group controlId="VrijednostOcjena">
+                <Form.Group controlId="vrijednostOcjena">
                     <Form.Label>Vrijednost Ocjene</Form.Label>
-                    <Form.Control type="number" name="VrijednostOcjena" required />
+                    <Form.Control type="number" name="vrijednostOcjena" required />
                 </Form.Group>
 
                 <Form.Group controlId="datum">

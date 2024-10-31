@@ -13,21 +13,27 @@ export default function ObavijestiPromjena() {
   const { prikaziError } = useError();
 
   const [predmeti, setPredmeti] = useState([]);
-  const [predmetId, setPredmetId] = useState(0);
+  const [predmetId, setPredmetId] = useState(null); // Promijenjeno
 
   const [ucenici, setUcenici] = useState([]);
-  const [ucenikId, setUcenikId] = useState(0);
+  const [ucenikId, setUcenikId] = useState(null); // Promijenjeno
 
   const [ocjena, setOcjena] = useState({});
 
   async function dohvatiPredmete() {
     const odgovor = await PredmetService.get();
     setPredmeti(odgovor.poruka);
+    if (odgovor.poruka.length > 0) {
+        setPredmetId(odgovor.poruka[0].id); 
+    }
   }
 
   async function dohvatiUcenike() {
     const odgovor = await UcenikService.get();
     setUcenici(odgovor.poruka);
+    if (odgovor.poruka.length > 0) {
+        setUcenikId(odgovor.poruka[0].id); 
+    }
   }
 
   async function dohvatiOcjene() {
@@ -76,7 +82,7 @@ export default function ObavijestiPromjena() {
     e.preventDefault();
     const podaci = new FormData(e.target);
 
-    if (!ucenikId || !predmetId) {
+    if (ucenikId === null || predmetId === null) { // Promijenjeno
       prikaziError(['Morate odabrati učenika i predmet.']);
       return;
     }
@@ -98,13 +104,13 @@ export default function ObavijestiPromjena() {
             <Form.Group className='mb-3' controlId="ucenikId">
               <Form.Label>Učenik</Form.Label>
               <Form.Select 
-                value={ucenikId}
-                onChange={(e) => {setUcenikId(e.target.value)}}
+                value={ucenikId || ''} // Dodano
+                onChange={(e) => { setUcenikId(parseInt(e.target.value) || null); }} // Promijenjeno
               >
                 <option value="">Odaberite učenika</option>
                 {ucenici.map((s, index) => (
                   <option key={index} value={s.id}>
-                    {s.naziv}
+                    {s.ime}
                   </option>
                 ))}
               </Form.Select>
@@ -113,8 +119,8 @@ export default function ObavijestiPromjena() {
             <Form.Group className='mb-3' controlId="predmetId">
               <Form.Label>Predmet</Form.Label>
               <Form.Select 
-                value={predmetId}
-                onChange={(e) => {setPredmetId(e.target.value)}}
+                value={predmetId || ''} // Dodano
+                onChange={(e) => { setPredmetId(parseInt(e.target.value) || null); }} // Promijenjeno
               >
                 <option value="">Odaberite predmet</option>
                 {predmeti.map((s, index) => (
@@ -125,14 +131,15 @@ export default function ObavijestiPromjena() {
               </Form.Select>
             </Form.Group>
 
-            <Form.Group controlId="VrijednostOcjena">
+            <Form.Group controlId="vrijednostOcjena">
               <Form.Label>Vrijednost Ocjene</Form.Label>
               <Form.Control 
                 type="number" 
                 name="vrijednostOcjene" 
                 required 
-                min="1" // Dodajte minimalnu vrijednost
-                defaultValue={ocjena.vrijednostOcjene} 
+                min="1" 
+                value={ocjena.vrijednostOcjene || ''} 
+                onChange={(e) => setOcjena({ ...ocjena, vrijednostOcjene: e.target.value })} 
               />
             </Form.Group>
 
@@ -142,7 +149,8 @@ export default function ObavijestiPromjena() {
                 type="date" 
                 name="datum" 
                 required 
-                defaultValue={ocjena.datum?.split('T')[0]} 
+                value={ocjena.datum?.split('T')[0] || ''} 
+                onChange={(e) => setOcjena({ ...ocjena, datum: e.target.value })} 
               />
             </Form.Group>
 
