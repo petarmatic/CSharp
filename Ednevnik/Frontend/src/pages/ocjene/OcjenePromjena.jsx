@@ -53,6 +53,13 @@ export default function ObavijestiPromjena() {
     dohvatiInicijalnePodatke();
   }, []);
 
+  useEffect(() => {
+    if (ocjena) {
+      setPredmetId(ocjena.predmetId); 
+      setUcenikId(ocjena.ucenikId); 
+    }
+  }, [ocjena]);
+
   async function promjena(ocjena) {
     const odgovor = await Service.promjena(routeParams.id, ocjena);
 
@@ -69,31 +76,33 @@ export default function ObavijestiPromjena() {
     e.preventDefault();
     const podaci = new FormData(e.target);
 
-   promjena( {
-        ucenikId: parseInt(ucenikId),
-        predmetId: parseInt(predmetId),
-        vrijednostOcjene: parseFloat(podaci.get('vrijednostOcjene')), // ispravka ovdje
-        datum: podaci.get('datum')
+    if (!ucenikId || !predmetId) {
+      prikaziError(['Morate odabrati učenika i predmet.']);
+      return;
+    }
+
+    promjena({
+      ucenikId: parseInt(ucenikId),
+      predmetId: parseInt(predmetId),
+      vrijednostOcjene: parseInt(podaci.get('vrijednostOcjene')), 
+      datum: podaci.get('datum')
     });
-}
-
-    
-
-   
+  }
 
   return (
     <>
       <h2>Ocjena promjena</h2>
       <Row>
-        <Col key='1' sm={12} lg={6} md={6}>
+        <Col sm={12} lg={6} md={6}>
           <Form onSubmit={obradiSubmit}>
             <Form.Group className='mb-3' controlId="ucenikId">
               <Form.Label>Učenik</Form.Label>
               <Form.Select 
-                  value={ucenikId}
-                  onChange={(e) => {setUcenikId(e.target.value)}}
+                value={ucenikId}
+                onChange={(e) => {setUcenikId(e.target.value)}}
               >
-                {ucenici && ucenici.map((s, index) => (
+                <option value="">Odaberite učenika</option>
+                {ucenici.map((s, index) => (
                   <option key={index} value={s.id}>
                     {s.naziv}
                   </option>
@@ -104,10 +113,11 @@ export default function ObavijestiPromjena() {
             <Form.Group className='mb-3' controlId="predmetId">
               <Form.Label>Predmet</Form.Label>
               <Form.Select 
-                  value={predmetId}
-                  onChange={(e) => {setPredmetId(e.target.value)}}
+                value={predmetId}
+                onChange={(e) => {setPredmetId(e.target.value)}}
               >
-                {predmeti && predmeti.map((s, index) => (
+                <option value="">Odaberite predmet</option>
+                {predmeti.map((s, index) => (
                   <option key={index} value={s.id}>
                     {s.naziv}
                   </option>
@@ -119,8 +129,9 @@ export default function ObavijestiPromjena() {
               <Form.Label>Vrijednost Ocjene</Form.Label>
               <Form.Control 
                 type="number" 
-                name="VrijednostOcjena" 
+                name="vrijednostOcjene" 
                 required 
+                min="1" // Dodajte minimalnu vrijednost
                 defaultValue={ocjena.vrijednostOcjene} 
               />
             </Form.Group>
